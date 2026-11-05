@@ -4,6 +4,25 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Polars 2.1
+
+- The dependency is now `polars>=2.1,<3` (was `>=1.0,<2`). The `polars-pinned`
+  CI job runs the suite on 2.1.0.
+- `read_feed_ipc` no longer passes `memory_map=True` to `pl.read_ipc`; Polars 2.x
+  removed that argument. Callers are unaffected.
+- Run manifests: `run_id` and `engine_code_sha256` hash the engine sources, so
+  they change with this release even for identical inputs. Compare runs by
+  `data_sha256`, broker and strategy settings, not by `run_id`, across the upgrade.
+- Result tables match 1.44.2 bit-for-bit for the event engine. Per-date IC and
+  rank-IC values can differ in the last bit (about 1e-17 absolute, 1e-13 relative
+  near zero). Tests that compare stored floats need a tolerance. See
+  `benchmark-results/polars-2.1-upgrade/`.
+- Output fingerprints: `benchmarks/output_fingerprint.py` compares result tables
+  bit-exactly or within tolerances; `benchmarks/factor_pipeline_perf.py` times the
+  factor pipeline on a realistic-size synthetic panel.
+
 ## 0.0.1 — 2026-11-05
 
 First standalone build, distributed as a local wheel. Everything up to the

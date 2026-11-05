@@ -30,10 +30,10 @@ classifiers = [
 ]
 dependencies = [
   "numpy>=2.1",
-  # Cap below 2.0: Polars 2.0 is a breaking major, so an unpinned install must
-  # not silently pull it in. The `polars-pinned` CI job (quality.yml) runs the suite
+  # Cap below 3.0: the next major may break again, so an unpinned install must not
+  # silently pull it in. The `polars-pinned` CI job (quality.yml) runs the suite
   # on the pinned stable version; bump that pin deliberately.
-  "polars>=1.0,<2",
+  "polars>=2.1,<3",
   "pyarrow>=18.0",
   "orjson>=3.10",
   "jsonschema[format]>=4.23,<5",

@@ -32,4 +32,4 @@ def write_feed_ipc(feed: ColumnarBarFeed, path: str | Path, *, batch_rows: int =
 
 
 def read_feed_ipc(path: str | Path, *, cache: bool = True) -> ColumnarBarFeed:
-    return ColumnarBarFeed.from_polars(pl.read_ipc(path, memory_map=True), date_col="timestamp", cache=cache)
+    return ColumnarBarFeed.from_polars(pl.read_ipc(path), date_col="timestamp", cache=cache)

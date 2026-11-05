@@ -1,17 +1,17 @@
 {
-  "machine": "arm64",
+  "machine": "x86_64",
   "metrics": {
-    "execution_sweep.process.cases_per_second": 22.32,
-    "execution_sweep.serial.cases_per_second": 41.96,
-    "extreme_scaling.fusion_100000.bars_per_second": 588046.7732454819,
-    "extreme_scaling.fusion_100000.peak_rss_mb": 199.25,
-    "extreme_scaling.fusion_1000000.bars_per_second": 588279.8767357577,
-    "extreme_scaling.fusion_1000000.peak_rss_mb": 714.046875,
-    "feed_construction.from_bars.rows_per_second": 3533267.1,
-    "feed_construction.from_polars.rows_per_second": 814350.8,
-    "open_order_scan.bars_per_second": 372439.21,
-    "stress.bar_observations_per_second": 368852.0600438295
+    "execution_sweep.process.cases_per_second": 11.08,
+    "execution_sweep.serial.cases_per_second": 26.87,
+    "extreme_scaling.fusion_100000.bars_per_second": 347404.0641245081,
+    "extreme_scaling.fusion_100000.peak_rss_mb": 236.9453125,
+    "extreme_scaling.fusion_1000000.bars_per_second": 344180.97009525204,
+    "extreme_scaling.fusion_1000000.peak_rss_mb": 727.3671875,
+    "feed_construction.from_bars.rows_per_second": 2122305.9,
+    "feed_construction.from_polars.rows_per_second": 792939.0,
+    "open_order_scan.bars_per_second": 278210.49,
+    "stress.bar_observations_per_second": 187060.0038572712
   },
-  "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
-  "python": "CPython 3.13.14"
+  "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+  "python": "CPython 3.13.17"
 }

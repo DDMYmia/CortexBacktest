@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Read-only shadow decisions, never executable orders",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contractVersion", "mode", "executionAuthorized", "strategySha256", "engineCodeSha256", "inputSha256", "snapshotAsOf", "warmup", "accountRef", "accountSourceSha256", "accountEventTime", "decisions", "decisionSha256"],
+  "properties": {
+    "contractVersion": {"const": "shadow-decision-v1"},
+    "mode": {"const": "shadow"},
+    "executionAuthorized": {"const": false},
+    "strategySha256": {"$ref": "#/$defs/digest"},
+    "engineCodeSha256": {"$ref": "#/$defs/digest"},
+    "inputSha256": {"$ref": "#/$defs/digest"},
+    "snapshotAsOf": {"type": "string", "format": "date-time"},
+    "accountRef": {"type": "string", "minLength": 1, "maxLength": 128, "pattern": "\\S"},
+    "accountSourceSha256": {"$ref": "#/$defs/digest"},
+    "accountEventTime": {"type": "string", "format": "date-time"},
+    "decisionSha256": {"$ref": "#/$defs/digest"},
+    "warmup": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "object", "additionalProperties": false,
+          "required": ["inputSha256", "asOf", "recordCount", "ordering"],
+          "properties": {
+            "inputSha256": {"$ref": "#/$defs/digest"},
+            "asOf": {"type": "string", "format": "date-time"},
+            "recordCount": {"type": "integer", "minimum": 1},
+            "ordering": {"const": "market-event-time"}
+          }
+        }
+      ]
+    },
+    "decisions": {
+      "type": "array", "minItems": 1, "maxItems": 1000,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["signalId", "symbol", "eventTime", "expiresAt", "currentQuantity", "targetQuantity", "side", "quantity"],
+        "properties": {
+          "signalId": {"$ref": "#/$defs/digest"},
+          "symbol": {"type": "string", "pattern": "^INSTRUMENT:[1-9][0-9]*$"},
+          "eventTime": {"type": "string", "format": "date-time"},
+          "expiresAt": {"type": "string", "format": "date-time"},
+          "currentQuantity": {"$ref": "#/$defs/quantity"},
+          "targetQuantity": {"$ref": "#/$defs/quantity"},
+          "quantity": {"$ref": "#/$defs/quantity"},
+          "side": {"enum": ["BUY", "SELL", "HOLD"]}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "quantity": {"type": "string", "maxLength": 128, "pattern": "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?(?:[eE][+-]?[0-9]+)?$"}
+  }
+}

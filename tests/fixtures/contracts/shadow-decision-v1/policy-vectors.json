@@ -1,0 +1,21 @@
+{
+  "artifact": {
+    "artifactVersion": "cortex-strategy-v1",
+    "engineCodeSha256": "1820973c797e99ea8ac3941a39cbed0501eba28d33dee0779e7715206e8fcdf6",
+    "symbols": [
+      "INSTRUMENT:1"
+    ],
+    "family": "sma_cross",
+    "parameters": {
+      "fast": 2,
+      "slow": 3,
+      "quantity": 2.25
+    },
+    "gate": null,
+    "maxSignalAgeSeconds": 300,
+    "maxAccountAgeSeconds": 60
+  },
+  "artifactSha256": "3df12a71ee3a71496c326c75fd8e69f56e34055fabb00fb4179791368fc10cc6",
+  "accountRef": "test-account",
+  "now": "2026-09-08T20:00:01+00:00"
+}

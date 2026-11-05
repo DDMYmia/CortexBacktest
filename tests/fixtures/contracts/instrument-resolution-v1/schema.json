@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "instrument-resolution-v1",
+  "type": "object",
+  "required": [
+    "contractVersion",
+    "symbol",
+    "symbolSource",
+    "marketMic",
+    "effectiveOn",
+    "asOf",
+    "status",
+    "instrumentId",
+    "candidateIds",
+    "recordedAt"
+  ],
+  "properties": {
+    "contractVersion": {
+      "type": "string",
+      "const": "instrument-resolution-v1"
+    },
+    "symbol": {
+      "type": "string",
+      "minLength": 1
+    },
+    "symbolSource": {
+      "type": "string",
+      "minLength": 1
+    },
+    "marketMic": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Z0-9]{4}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "effectiveOn": {
+      "type": "string",
+      "format": "date"
+    },
+    "asOf": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "resolved",
+        "unresolved",
+        "unverified",
+        "ambiguous"
+      ]
+    },
+    "instrumentId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[1-9][0-9]*$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "candidateIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[1-9][0-9]*$"
+      },
+      "uniqueItems": true
+    },
+    "recordedAt": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "resolved"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "instrumentId": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "recordedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "candidateIds": {
+            "minItems": 1,
+            "maxItems": 1
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "instrumentId": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": true
+}

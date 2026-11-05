@@ -1,0 +1,15 @@
+{
+  "contractVersion": "instrument-resolution-v1",
+  "symbol": "ABC",
+  "symbolSource": "vendor-a",
+  "marketMic": null,
+  "effectiveOn": "2020-01-01",
+  "asOf": "2020-01-02T00:00:00Z",
+  "status": "ambiguous",
+  "instrumentId": null,
+  "candidateIds": [
+    "1",
+    "2"
+  ],
+  "recordedAt": "2020-01-01T10:00:00Z"
+}

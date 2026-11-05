@@ -1,0 +1,41 @@
+{
+  "contractVersion": "account-report-v1",
+  "sourceReportSha256": "e64c1d32ab460c34fb5f9405f3f91d2a70cc46cec67cf8acd30074c895269807",
+  "report": {
+    "schema_version": 1,
+    "scope": "broker_account_facts",
+    "from": "2026-01-01",
+    "to": "2026-01-02",
+    "opening_date": "2025-12-31",
+    "account_id": "fixture-account",
+    "ledger_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "position_boundary_sources": {
+      "2025-12-31": [],
+      "2026-01-02": []
+    },
+    "issues": [
+      "missing_opening_position_snapshot",
+      "missing_closing_position_snapshot",
+      "incomplete_trade_report_coverage"
+    ],
+    "review_events": [],
+    "missing_sections": [
+      "CashReport",
+      "Transfers"
+    ],
+    "positions": [],
+    "commission_sums_by_currency": {},
+    "cash_transaction_sums": [],
+    "included_trade_event_ids": [],
+    "excluded_trade_event_ids": [],
+    "aggregation": {
+      "excluded_cash_event_ids": [],
+      "cash_transactions_covered": false,
+      "trade_reports_covered": false
+    },
+    "summary": {
+      "review_events": 0,
+      "excluded_trades": 0
+    }
+  }
+}

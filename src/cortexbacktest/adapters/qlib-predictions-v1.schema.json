@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fusionfinance:qlib-predictions:v1",
+  "title": "Diagnostic Qlib predictions manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractVersion",
+    "mode",
+    "inputSha256",
+    "inputAsOf",
+    "settings",
+    "instruments",
+    "recordCount",
+    "generatedAt",
+    "producerSha256",
+    "versions",
+    "featureCount",
+    "files",
+    "researchOnly",
+    "qualificationIssued",
+    "executionAuthorized"
+  ],
+  "properties": {
+    "contractVersion": {
+      "const": "qlib-predictions-v1"
+    },
+    "mode": {
+      "const": "historical_reconstruction"
+    },
+    "inputSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "inputAsOf": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "settings": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "splits": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "train",
+            "valid",
+            "test"
+          ],
+          "properties": {
+            "train": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "valid": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "test": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        },
+        "label": {
+          "const": "Ref($close,-2)/Ref($close,-1)-1"
+        },
+        "labelHorizon": {
+          "const": 2
+        },
+        "features": {
+          "const": "Alpha158-OHLCV"
+        },
+        "excludedFeatures": {
+          "const": [
+            "VWAP0"
+          ]
+        },
+        "rounds": {
+          "const": 40
+        },
+        "earlyStopping": {
+          "const": 10
+        },
+        "seed": {
+          "const": 7
+        },
+        "trials": {
+          "const": 1
+        },
+        "featureProcessors": {
+          "const": [
+            "ProcessInf",
+            "ZScoreNorm-training-only",
+            "Fillna"
+          ]
+        },
+        "explainShap": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "splits",
+        "label",
+        "labelHorizon",
+        "features",
+        "excludedFeatures",
+        "rounds",
+        "earlyStopping",
+        "seed",
+        "trials",
+        "featureProcessors"
+      ]
+    },
+    "instruments": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 200,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[1-9][0-9]*$"
+      }
+    },
+    "recordCount": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 200000
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producerSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "versions": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "pyqlib",
+            "lightgbm"
+          ],
+          "properties": {
+            "pyqlib": {
+              "type": "string",
+              "minLength": 1
+            },
+            "lightgbm": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "alphaEngine",
+            "numpy",
+            "pandas",
+            "lightgbm",
+            "pyarrow"
+          ],
+          "properties": {
+            "alphaEngine": {
+              "enum": ["fusion-native-v1", "fusion-native-v2"]
+            },
+            "numpy": {
+              "type": "string",
+              "minLength": 1
+            },
+            "pandas": {
+              "type": "string",
+              "minLength": 1
+            },
+            "lightgbm": {
+              "type": "string",
+              "minLength": 1
+            },
+            "pyarrow": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ]
+    },
+    "featureCount": {
+      "const": 157
+    },
+    "files": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model.txt",
+        "predictions.json"
+      ],
+      "properties": {
+        "model.txt": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "predictions.json": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "features.parquet": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "diagnostics.json": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "dependentRequired": {
+        "features.parquet": [
+          "diagnostics.json"
+        ],
+        "diagnostics.json": [
+          "features.parquet"
+        ]
+      }
+    },
+    "researchOnly": {
+      "const": true
+    },
+    "qualificationIssued": {
+      "const": false
+    },
+    "executionAuthorized": {
+      "const": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "settings": {
+            "required": [
+              "explainShap"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "files": {
+            "required": [
+              "features.parquet",
+              "diagnostics.json"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

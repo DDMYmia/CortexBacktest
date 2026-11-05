@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen factor strategy identity (no execution authority)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["artifactVersion", "engineCodeSha256", "selectionSha256", "factor", "symbols", "rebalance"],
+  "properties": {
+    "researchOnly": {"const": true},
+    "artifactVersion": {"const": "cortex-factor-strategy-v1"},
+    "engineCodeSha256": {"$ref": "#/$defs/digest"},
+    "selectionSha256": {"$ref": "#/$defs/digest"},
+    "factor": {"type": "string", "minLength": 1},
+    "symbols": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^INSTRUMENT:[1-9][0-9]*$"}
+    },
+    "rebalance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["cash_buffer", "min_trade_value", "allow_fractional", "tag"],
+      "properties": {
+        "cash_buffer": {"type": "number", "minimum": 0, "exclusiveMaximum": 1},
+        "min_trade_value": {"type": "number", "minimum": 0, "maximum": 1.7976931348623157e308},
+        "allow_fractional": {"type": "boolean"},
+        "tag": {"type": "string"},
+        "quantity_steps": {
+          "type": "array", "minItems": 1,
+          "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": false,
+            "prefixItems": [{"type": "string", "pattern": "^INSTRUMENT:[1-9][0-9]*$"},
+              {"type": "string", "maxLength": 128,
+               "pattern": "^(?:0\\.[0-9]*[1-9][0-9]*|[1-9][0-9]*(?:\\.[0-9]+)?)$"}]}
+        }
+      }
+    }
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+}

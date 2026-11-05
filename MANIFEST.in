@@ -1,0 +1,9 @@
+exclude references
+recursive-exclude references *
+recursive-exclude examples/output *
+prune data
+prune output
+prune build
+prune benchmark-results
+prune packages
+prune docs/authorizations

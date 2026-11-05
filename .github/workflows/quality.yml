@@ -1,0 +1,74 @@
+name: quality
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Match the package's supported interpreter range (>=3.13,<3.14).
+        python-version: ["3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e .[dev]
+      # The strategy rules package is private and absent from the public export.
+      - if: hashFiles('packages/strategy-rules/pyproject.toml') != ''
+        run: python -m pip install -e packages/strategy-rules
+      - run: python -m ruff check src tests
+      # Type check against a committed baseline: fails only on NEW type errors,
+      # so the migration's type quality cannot silently regress.
+      - run: python -m basedpyright src/cortexbacktest
+      - run: python -m compileall -q src tests
+      - run: python -m pytest -q
+
+  # Installs the built distribution into an environment holding only the
+  # declared dependencies. The repo suite cannot catch an undeclared dependency
+  # because a dev environment usually has the extras installed too.
+  clean-install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install --upgrade pip build
+      - run: python -m build --sdist
+      - name: Reject unwanted paths in the distribution
+        run: |
+          if tar tzf dist/*.tar.gz | grep -E 'references/|\.venv|__pycache__|examples/output'; then
+            echo "distribution contains paths that must be excluded"
+            exit 1
+          fi
+      - name: Install from the sdist into a clean environment
+        run: |
+          python -m venv /tmp/cleanenv
+          /tmp/cleanenv/bin/python -m pip install dist/*.tar.gz
+      - name: Smoke test with only declared dependencies
+        # Run outside the repo so the installed package is imported, not src/.
+        run: cd /tmp && /tmp/cleanenv/bin/python "$GITHUB_WORKSPACE/scripts/clean_install_smoke.py"
+
+  # Runs the suite on the exact stable Polars the engine was verified with (1.44.2),
+  # so a Polars release cannot break CI silently. Update the pin deliberately.
+  polars-pinned:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e .[dev]
+      # The strategy rules package is private and absent from the public export.
+      - if: hashFiles('packages/strategy-rules/pyproject.toml') != ''
+        run: python -m pip install -e packages/strategy-rules
+      - run: python -m pip install --force-reinstall "polars==1.44.2"
+      - run: python -c "import polars; assert polars.__version__ == '1.44.2', polars.__version__; print('polars', polars.__version__)"
+      - run: python -m pytest -q

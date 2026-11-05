@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "factor-observations-v1",
+  "type": "object",
+  "required": [
+    "contractVersion",
+    "factor_value_id",
+    "instrument_id",
+    "entity_receipt_id",
+    "symbol",
+    "symbol_source",
+    "factor_name",
+    "source",
+    "source_version",
+    "event_id",
+    "market_mic",
+    "as_of",
+    "event_time",
+    "score_known_at",
+    "recorded_at",
+    "entity_known_at",
+    "identity_known_at",
+    "known_at",
+    "value",
+    "metadata"
+  ],
+  "properties": {
+    "contractVersion": {
+      "type": "string",
+      "const": "factor-observations-v1"
+    },
+    "factor_value_id": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "instrument_id": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "entity_receipt_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[1-9][0-9]*$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "symbol": {
+      "type": "string",
+      "minLength": 1
+    },
+    "symbol_source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "factor_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_id": {
+      "type": "string"
+    },
+    "market_mic": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Z0-9]{4}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "event_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "score_known_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "entity_known_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "identity_known_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "known_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "value": {
+      "type": "number",
+      "minimum": -1.7976931348623157e+308,
+      "maximum": 1.7976931348623157e+308
+    },
+    "metadata": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "factor_name": {
+            "const": "news_sentiment"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "entity_receipt_id": {
+            "type": "string"
+          },
+          "event_id": {
+            "minLength": 1
+          },
+          "symbol_source": {
+            "const": "fmp"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "contractVersion": "instrument-resolution-v1",
+  "symbol": "ABC",
+  "symbolSource": "vendor-a",
+  "marketMic": "XNAS",
+  "effectiveOn": "2020-01-01",
+  "asOf": "2020-01-02T00:00:00Z",
+  "status": "resolved",
+  "instrumentId": "1",
+  "candidateIds": [
+    "1"
+  ],
+  "recordedAt": "2020-01-01T10:00:00Z"
+}

@@ -1,0 +1,81 @@
+name: perf-gate
+
+# Performance regression gate: runs the fixed measurement set in
+# benchmarks/perf_gate.py and compares it against the committed baseline in
+# benchmarks/perf_baseline.json (25% tolerance — see compare_perf_gate.py's
+# docstring for why that number).
+#
+# Soft-launch: the comparison step is `continue-on-error: true`, so a
+# regression is flagged on the PR (as a warning annotation and in the job
+# log) but does not block merges yet. The committed baseline records its
+# machine and platform; verify comparability with ubuntu-latest before making
+# this a hard gate. Shared runners vary more than a dedicated benchmark box.
+# Once a few weeks of PR runs have shown the 25%
+# tolerance holds without spurious flags on this hardware, flip
+# `continue-on-error` to `false` on the "Compare against baseline" step to
+# make this a hard gate.
+
+on:
+  pull_request:
+  schedule:
+    # Nightly backstop on main, in case a PR run was skipped or cancelled.
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+    inputs:
+      update_baseline:
+        description: "Overwrite benchmarks/perf_baseline.json with this run's results and commit it to main"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  perf-gate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e .[dev]
+
+      - name: Run perf gate measurements
+        run: python benchmarks/perf_gate.py --output benchmark-results/perf-gate/latest.json
+
+      - name: Compare against baseline
+        id: compare
+        continue-on-error: true
+        run: >
+          python benchmarks/compare_perf_gate.py
+          --baseline benchmarks/perf_baseline.json
+          --current benchmark-results/perf-gate/latest.json
+          --tolerance 0.25
+
+      - name: Flag regression
+        if: steps.compare.outcome == 'failure'
+        run: echo "::warning::perf-gate detected a regression beyond tolerance (see the 'Compare against baseline' step). Not blocking merge during the soft-launch period — see this workflow's top comment."
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: perf-gate-results
+          path: benchmark-results/perf-gate/latest.json
+
+      - name: Update committed baseline
+        if: github.event_name == 'workflow_dispatch' && inputs.update_baseline
+        run: |
+          cp benchmark-results/perf-gate/latest.json benchmarks/perf_baseline.json
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add benchmarks/perf_baseline.json
+          if git diff --cached --quiet; then
+            echo "baseline unchanged"
+          else
+            git commit -m "chore: refresh perf gate baseline (ubuntu-latest, $(date -u +%Y-%m-%d))"
+            git push
+          fi

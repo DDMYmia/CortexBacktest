@@ -1,0 +1,189 @@
+{
+  "contractVersion": "account-report-v1",
+  "sourceReportSha256": "d82c8eebe48118a5163a578cb2d4aef45f220761f54757bed78cee8407645885",
+  "report": {
+    "schema_version": 1,
+    "scope": "broker_account_facts",
+    "from": "2026-01-01",
+    "to": "2026-01-02",
+    "opening_date": "2025-12-31",
+    "account_id": "fixture-account",
+    "ledger_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "position_boundary_sources": {
+      "2025-12-31": [],
+      "2026-01-02": []
+    },
+    "issues": [
+      "missing_opening_position_snapshot",
+      "missing_closing_position_snapshot",
+      "incomplete_trade_report_coverage"
+    ],
+    "review_events": [],
+    "missing_sections": [
+      "CashReport",
+      "Transfers"
+    ],
+    "positions": [],
+    "commission_sums_by_currency": {},
+    "cash_transaction_sums": [],
+    "included_trade_event_ids": [],
+    "excluded_trade_event_ids": [],
+    "aggregation": {
+      "excluded_cash_event_ids": [],
+      "cash_transactions_covered": false,
+      "trade_reports_covered": false
+    },
+    "summary": {
+      "review_events": 0,
+      "excluded_trades": 0
+    },
+    "archive_analysis": {
+      "basis": "broker_archive_observations_not_reconciled",
+      "account_id": "fixture-account",
+      "sources": [
+        {
+          "profile": "full_archive",
+          "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+          "statement_indices": [
+            0,
+            1
+          ],
+          "section_observations": {
+            "ChangeInNAV": 2,
+            "EquitySummaryInBase": 2
+          }
+        }
+      ],
+      "nav": [
+        {
+          "date": "2026-01-01",
+          "currency": "USD",
+          "model": "",
+          "status": "observed",
+          "variants": [
+            {
+              "values": {
+                "total": "1010",
+                "cash": "1010",
+                "stock": "0",
+                "options": "0"
+              },
+              "observations": [
+                {
+                  "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+                  "statement_index": 0,
+                  "row_index": 0,
+                  "raw_record_sha256": "f1534392279bddbf9d43dde8701cb5be14b82f76ec6607bf8d6ad557f60f304e"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "date": "2026-01-02",
+          "currency": "USD",
+          "model": "",
+          "status": "observed",
+          "variants": [
+            {
+              "values": {
+                "total": "1540.2",
+                "cash": "1540.2",
+                "stock": "0",
+                "options": "0"
+              },
+              "observations": [
+                {
+                  "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+                  "statement_index": 1,
+                  "row_index": 0,
+                  "raw_record_sha256": "4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "returns": [
+        {
+          "date": "2026-01-01",
+          "currency": "USD",
+          "model": "",
+          "status": "observed",
+          "variants": [
+            {
+              "values": {
+                "startingValue": "1000",
+                "endingValue": "1010",
+                "twr": "1"
+              },
+              "observations": [
+                {
+                  "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+                  "statement_index": 0,
+                  "row_index": 0,
+                  "raw_record_sha256": "f1534392279bddbf9d43dde8701cb5be14b82f76ec6607bf8d6ad557f60f304e"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "date": "2026-01-02",
+          "currency": "USD",
+          "model": "",
+          "status": "observed",
+          "variants": [
+            {
+              "values": {
+                "startingValue": "1010",
+                "endingValue": "1540.2",
+                "twr": "2"
+              },
+              "observations": [
+                {
+                  "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+                  "statement_index": 1,
+                  "row_index": 0,
+                  "raw_record_sha256": "4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "daily_returns": {
+      "basis": "broker_twr_with_ledger_flows",
+      "base_currency": "USD",
+      "days": [
+        {
+          "date": "2026-01-01",
+          "prior_date": "2025-12-31",
+          "prior_nav": "1000",
+          "nav": "1010",
+          "twr": "1",
+          "flow": "0",
+          "issues": []
+        },
+        {
+          "date": "2026-01-02",
+          "prior_date": "2026-01-01",
+          "prior_nav": "1010",
+          "nav": "1540.2",
+          "twr": "2",
+          "flow": "500",
+          "flow_sources": [
+            {
+              "event_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+              "currency": "EUR",
+              "amount": "400",
+              "rate": "1.25"
+            }
+          ],
+          "issues": []
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "artifactVersion": "cortex-factor-strategy-v1",
+  "engineCodeSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "selectionSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "factor": "momentum:5:1",
+  "symbols": ["INSTRUMENT:1", "INSTRUMENT:2"],
+  "rebalance": {"cash_buffer": 0.0, "min_trade_value": 0.0, "allow_fractional": false, "tag": "rebalance"}
+}

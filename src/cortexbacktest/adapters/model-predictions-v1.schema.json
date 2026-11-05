@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fusionfinance:model-predictions:v1",
+  "title": "Diagnostic model scores or target portfolio weights",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractVersion",
+    "mode",
+    "inputSha256",
+    "inputAsOf",
+    "settings",
+    "instruments",
+    "recordCount",
+    "generatedAt",
+    "producerSha256",
+    "versions",
+    "featureCount",
+    "files",
+    "researchOnly",
+    "qualificationIssued",
+    "executionAuthorized"
+  ],
+  "properties": {
+    "contractVersion": {
+      "const": "model-predictions-v1"
+    },
+    "mode": {
+      "const": "historical_reconstruction"
+    },
+    "inputSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "inputAsOf": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "settings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "splits",
+        "output",
+        "seed",
+        "features",
+        "labelHorizon",
+        "algorithm",
+        "trainingSteps",
+        "trainingCostsBps"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "tree_oof_stacking",
+            "rl_portfolio"
+          ]
+        },
+        "splits": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "train",
+            "valid",
+            "test"
+          ],
+          "properties": {
+            "train": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "valid": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "test": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        },
+        "output": {
+          "enum": [
+            "score",
+            "weight"
+          ]
+        },
+        "seed": {
+          "const": 7
+        },
+        "features": {
+          "const": "causal_ohlcv_5"
+        },
+        "labelHorizon": {
+          "const": 2
+        },
+        "algorithm": {
+          "enum": [
+            null,
+            "ppo",
+            "sac",
+            "a2c"
+          ]
+        },
+        "trainingSteps": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 128,
+          "maximum": 100000
+        },
+        "trainingCostsBps": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 200
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "rl_portfolio"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "output": {
+                "const": "weight"
+              },
+              "algorithm": {
+                "enum": [
+                  "ppo",
+                  "sac",
+                  "a2c"
+                ]
+              },
+              "trainingSteps": {
+                "type": "integer",
+                "minimum": 128,
+                "maximum": 100000
+              },
+              "trainingCostsBps": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 200
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "output": {
+                "const": "score"
+              },
+              "algorithm": {
+                "const": null
+              },
+              "trainingSteps": {
+                "const": null
+              },
+              "trainingCostsBps": {
+                "const": null
+              }
+            }
+          }
+        }
+      ]
+    },
+    "instruments": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 200,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[1-9][0-9]*$"
+      }
+    },
+    "recordCount": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 200000
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producerSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "versions": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 10,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "featureCount": {
+      "const": 5
+    },
+    "files": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "predictions.json",
+        "training.json"
+      ],
+      "minProperties": 3,
+      "maxProperties": 4,
+      "properties": {
+        "predictions.json": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "training.json": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "model.pkl": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "model.zip": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "diagnostics.json": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "researchOnly": {
+      "const": true
+    },
+    "qualificationIssued": {
+      "const": false
+    },
+    "executionAuthorized": {
+      "const": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "settings": {
+            "properties": {
+              "kind": {
+                "const": "rl_portfolio"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "files": {
+            "required": [
+              "model.zip"
+            ]
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "files": {
+            "required": [
+              "model.pkl"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

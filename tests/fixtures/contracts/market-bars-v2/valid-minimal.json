@@ -1,0 +1,20 @@
+{
+  "contractVersion": "market-bars-v2",
+  "instrumentId": "1",
+  "sessionDate": "2020-01-02",
+  "adjustment": "unadjusted",
+  "ohlcBasis": "unadjusted",
+  "source": "audit",
+  "adjustmentProvenance": "fixture-v1",
+  "sessionClose": "2020-01-02T21:00:00Z",
+  "sourceKnownAt": "2020-01-02T21:01:00Z",
+  "recordedAt": "2020-01-03T00:00:00Z",
+  "availableAt": "2020-01-03T00:00:00Z",
+  "asOf": "2020-01-04T00:00:00Z",
+  "open": 10.0,
+  "high": 11.0,
+  "low": 9.0,
+  "close": 10.0,
+  "adjClose": 10.0,
+  "volume": 100
+}

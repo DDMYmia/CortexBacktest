@@ -1,0 +1,115 @@
+{
+  "contractVersion": "account-report-v1",
+  "sourceReportSha256": "42f6f749fa6d9c4fa5c82a9cd02472e7d7c1203a04a308dc1ef284b8abc0d929",
+  "report": {
+    "schema_version": 1,
+    "scope": "broker_account_facts",
+    "from": "2026-01-01",
+    "to": "2026-01-02",
+    "opening_date": "2025-12-31",
+    "account_id": "fixture-account",
+    "ledger_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "position_boundary_sources": {
+      "2025-12-31": [],
+      "2026-01-02": []
+    },
+    "issues": [
+      "missing_opening_position_snapshot",
+      "missing_closing_position_snapshot",
+      "incomplete_trade_report_coverage"
+    ],
+    "review_events": [
+      {
+        "event_id": "ba78412762afded8ac8c91aedfa0d4d65a38df12ddee08b2e24ef9a322cd623e",
+        "issues": [
+          "conflicting_versions"
+        ]
+      }
+    ],
+    "missing_sections": [
+      "CashReport",
+      "Transfers"
+    ],
+    "positions": [],
+    "commission_sums_by_currency": {},
+    "cash_transaction_sums": [],
+    "included_trade_event_ids": [],
+    "excluded_trade_event_ids": [],
+    "aggregation": {
+      "excluded_cash_event_ids": [
+        "ba78412762afded8ac8c91aedfa0d4d65a38df12ddee08b2e24ef9a322cd623e"
+      ],
+      "cash_transactions_covered": false,
+      "trade_reports_covered": false
+    },
+    "summary": {
+      "review_events": 1,
+      "excluded_trades": 0
+    },
+    "review_evidence": [
+      {
+        "event_id": "ba78412762afded8ac8c91aedfa0d4d65a38df12ddee08b2e24ef9a322cd623e",
+        "kind": "cash",
+        "identity": [
+          "fixture-account",
+          "cash",
+          "10",
+          "Dividends"
+        ],
+        "issues": [
+          "conflicting_versions"
+        ],
+        "conflicting_fields": [
+          "amount"
+        ],
+        "links": [],
+        "variants": [
+          {
+            "version_sha256": "01b902c1f63df674e50b327501c3994b367f45a34fa647c023d6f07caeeb472e",
+            "fields": {
+              "accountId": "fixture-account",
+              "transactionID": "10",
+              "type": "Dividends",
+              "currency": "USD",
+              "amount": "1",
+              "dateTime": "20260101;120000",
+              "levelOfDetail": "DETAIL"
+            },
+            "observations": [
+              {
+                "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+                "statement_index": 0,
+                "row_index": 0,
+                "raw_record_sha256": "01b902c1f63df674e50b327501c3994b367f45a34fa647c023d6f07caeeb472e",
+                "report_from": "2026-01-01",
+                "report_to": "2026-01-02"
+              }
+            ]
+          },
+          {
+            "version_sha256": "fdabec0e29e0c6b81bcfeca13926a72f2aeace8f99a429d8fa457a88ece3305d",
+            "fields": {
+              "accountId": "fixture-account",
+              "transactionID": "10",
+              "type": "Dividends",
+              "currency": "USD",
+              "amount": "2",
+              "dateTime": "20260101;120000",
+              "levelOfDetail": "DETAIL"
+            },
+            "observations": [
+              {
+                "source_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+                "statement_index": 0,
+                "row_index": 0,
+                "raw_record_sha256": "fdabec0e29e0c6b81bcfeca13926a72f2aeace8f99a429d8fa457a88ece3305d",
+                "report_from": "2026-01-01",
+                "report_to": "2026-01-02"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

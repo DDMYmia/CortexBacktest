@@ -1,0 +1,39 @@
+{
+  "contractVersion": "observation-file-v1",
+  "recordVersion": "factor-observations-v1",
+  "recordCount": 1,
+  "asOf": "2026-09-18T00:00:00Z",
+  "scope": {
+    "factorName": "news_sentiment",
+    "symbolSource": "fmp",
+    "symbols": [
+      "AAPL"
+    ],
+    "start": "2026-09-17",
+    "end": "2026-09-18"
+  },
+  "records": [
+    {
+      "as_of": "2026-09-18T00:00:00Z",
+      "score_known_at": "2026-09-18T00:00:00Z",
+      "recorded_at": "2026-09-18T00:00:00Z",
+      "entity_known_at": "2026-09-18T00:00:00Z",
+      "identity_known_at": "2026-09-18T00:00:00Z",
+      "known_at": "2026-09-18T00:00:00Z",
+      "contractVersion": "factor-observations-v1",
+      "factor_value_id": "1",
+      "instrument_id": "1",
+      "entity_receipt_id": "1",
+      "symbol": "AAPL",
+      "symbol_source": "fmp",
+      "factor_name": "news_sentiment",
+      "source": "argussignal",
+      "source_version": "model-v1",
+      "event_id": "url:fixture",
+      "market_mic": "XNAS",
+      "event_time": "2026-09-17T12:00:00Z",
+      "value": 0.7,
+      "metadata": null
+    }
+  ]
+}

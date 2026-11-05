@@ -1,0 +1,253 @@
+section,scenario,dataset,symbols,bars_per_symbol,bar_observations,engine,convention,seconds,observations_per_second,peak_rss_mb,orders,fills,pnl,truth_pnl,pnl_diff,note
+"Recent real data, single asset",sma,recent.npz,1,563,563,fusion,next-open,0.002783,202321,148.8,10,10,893.0,892.9999999999995,0.0,event-driven; next-open fills
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,fusion,next-open,0.02159,886606,155.4,382,380,160436.0,160435.99999999997,0.0,event-driven; next-open fills
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,fusion,next-open,0.011415,49321,149.5,563,457,142854.0,,,event-driven; next-open fills
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,fusion,next-open,0.289079,66217,166.7,19142,16045,51242551.5,,,event-driven; next-open fills
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,fusion,next-open,0.004013,140293,148.8,8,8,-708.91,-708.909999999999,-0.0,event-driven; next-open fills
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,fusion,next-open,0.061026,313667,158.5,314,314,6285.01,6285.009999999997,0.0,event-driven; next-open fills
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,fusion,next-open,0.339719,294361,226.3,1761,1761,-8503.465,-8503.46499999999,-0.0,event-driven; next-open fills
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,fusion,next-open,6.578493,265634,1122.0,32705,32703,118622.1973,118622.19730000023,-0.0,event-driven; next-open fills
+Vertical scale,sma,deep.npz,1,2932,2932,fusion,next-open,0.009797,299283,222.3,70,70,-1441.0,-1441.0000000000027,0.0,event-driven; next-open fills
+Vertical scale,sma,wide.npz,100,1000,100000,fusion,next-open,0.123411,810300,209.2,2203,2201,332015.26,332015.26,0.0,event-driven; next-open fills
+Vertical scale,sma,deep.npz,100,2932,293200,fusion,next-open,0.359772,814962,324.3,6480,6478,429923.58,429923.57999999996,0.0,event-driven; next-open fills
+Vertical scale,sma,wide.npz,500,1000,500000,fusion,next-open,0.599646,833826,360.3,11160,11151,663314.94,663314.94,0.0,event-driven; next-open fills
+Vertical scale,sma,wide.npz,643,1000,643000,fusion,next-open,0.756833,849593,422.6,14266,14254,557478.84,557478.8399999999,0.0,event-driven; next-open fills
+Vertical scale,sma,deep.npz,596,2932,1747472,fusion,next-open,2.306335,757683,878.1,38634,38623,1738573.62,1738573.62,0.0,event-driven; next-open fills
+"Recent real data, single asset",sma,recent.npz,1,563,563,fusion (next-close),next-close,0.002838,198367,148.8,10,10,881.0,881.0,0.0,event-driven; next-close fills
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,fusion (next-close),next-close,0.021009,911150,155.7,382,380,158944.1,158944.10000000003,-0.0,event-driven; next-close fills
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,fusion (next-close),next-close,0.01159,48575,149.2,563,457,151444.1,,,event-driven; next-close fills
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,fusion (next-close),next-close,0.28344,67534,166.6,19142,16045,53726761.9,,,event-driven; next-close fills
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,fusion (next-close),next-close,0.004013,140300,149.0,8,8,-977.105,-977.1050000000005,0.0,event-driven; next-close fills
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,fusion (next-close),next-close,0.060578,315991,158.7,314,314,5361.846,5361.846000000014,-0.0,event-driven; next-close fills
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,fusion (next-close),next-close,0.327222,305603,226.5,1761,1761,-4387.536,-4387.535999999998,-0.0,event-driven; next-close fills
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,fusion (next-close),next-close,6.579865,265579,1092.7,32705,32703,119578.9426,119578.94259999992,0.0,event-driven; next-close fills
+Vertical scale,sma,deep.npz,1,2932,2932,fusion (next-close),next-close,0.009603,305337,222.5,70,70,-598.0,-598.0000000000014,0.0,event-driven; next-close fills
+Vertical scale,sma,wide.npz,100,1000,100000,fusion (next-close),next-close,0.120166,832179,209.2,2203,2201,380047.33,380047.33,0.0,event-driven; next-close fills
+Vertical scale,sma,deep.npz,100,2932,293200,fusion (next-close),next-close,0.349939,837861,328.6,6480,6478,489376.86,489376.86,0.0,event-driven; next-close fills
+Vertical scale,sma,wide.npz,500,1000,500000,fusion (next-close),next-close,0.594438,841131,360.2,11160,11151,681209.8,681209.7999999999,0.0,event-driven; next-close fills
+Vertical scale,sma,wide.npz,643,1000,643000,fusion (next-close),next-close,0.773531,831253,399.3,14266,14254,562205.4,562205.3999999999,0.0,event-driven; next-close fills
+Vertical scale,sma,deep.npz,596,2932,1747472,fusion (next-close),next-close,2.393747,730015,879.7,38634,38623,1783854.91,1783854.91,0.0,event-driven; next-close fills
+"Recent real data, single asset",sma,recent.npz,1,563,563,fusion (same-bar close),same-bar-close,0.002736,205803,148.8,10,10,873.1,873.0999999999999,0.0,event-driven; same-bar-close fills
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,fusion (same-bar close),same-bar-close,0.020962,913189,155.5,382,382,163814.0,163814.00000000006,-0.0,event-driven; same-bar-close fills
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,fusion (same-bar close),same-bar-close,0.011436,49231,149.2,563,459,150938.1,,,event-driven; same-bar-close fills
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,fusion (same-bar close),same-bar-close,0.291675,65628,166.7,19142,16260,55204558.3,,,event-driven; same-bar-close fills
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,fusion (same-bar close),same-bar-close,0.003876,145268,149.0,8,8,-94.959,-94.95899999999801,-0.0,event-driven; same-bar-close fills
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,fusion (same-bar close),same-bar-close,0.060201,317967,158.4,314,314,8051.141,8051.140999999994,0.0,event-driven; same-bar-close fills
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,fusion (same-bar close),same-bar-close,0.327163,305658,226.3,1761,1761,-14192.192,-14192.192000000017,0.0,event-driven; same-bar-close fills
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,fusion (same-bar close),same-bar-close,6.849011,255142,1192.2,32705,32705,-11365.1756,-11365.175600000031,0.0,event-driven; same-bar-close fills
+Vertical scale,sma,deep.npz,1,2932,2932,fusion (same-bar close),same-bar-close,0.008866,330695,222.3,70,70,-1557.5,-1557.499999999996,-0.0,event-driven; same-bar-close fills
+Vertical scale,sma,wide.npz,100,1000,100000,fusion (same-bar close),same-bar-close,0.116059,861632,209.1,2203,2203,334224.52,334224.52,0.0,event-driven; same-bar-close fills
+Vertical scale,sma,deep.npz,100,2932,293200,fusion (same-bar close),same-bar-close,0.340398,861346,329.0,6480,6480,430514.12,430514.12000000005,-0.0,event-driven; same-bar-close fills
+Vertical scale,sma,wide.npz,500,1000,500000,fusion (same-bar close),same-bar-close,0.600478,832670,360.2,11160,11160,626534.42,626534.4199999999,0.0,event-driven; same-bar-close fills
+Vertical scale,sma,wide.npz,643,1000,643000,fusion (same-bar close),same-bar-close,0.777144,827389,423.2,14266,14266,523313.42,523313.4199999999,0.0,event-driven; same-bar-close fills
+Vertical scale,sma,deep.npz,596,2932,1747472,fusion (same-bar close),same-bar-close,2.332655,749134,889.2,38634,38634,1751107.39,1751107.3900000001,-0.0,event-driven; same-bar-close fills
+"Recent real data, single asset",sma,recent.npz,1,563,563,backtrader,next-open,0.017837,31564,89.3,10,10,893.0,892.9999999999995,0.0,event-driven; next-bar-open fills
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,backtrader,next-open,0.442637,43245,94.4,382,380,160436.0,160435.99999999997,0.0,event-driven; next-bar-open fills
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,backtrader,next-open,0.079311,7099,92.3,563,457,142854.0,,,event-driven; next-bar-open fills
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,backtrader,next-open,3.279573,5837,208.0,19142,16045,51242624.5,,,event-driven; next-bar-open fills
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,backtrader,next-open,0.019197,29327,89.2,8,8,-708.91,-708.909999999999,-0.0,event-driven; next-bar-open fills
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,backtrader,next-open,0.466071,41071,97.4,314,314,6285.01,6285.009999999997,0.0,event-driven; next-bar-open fills
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,backtrader,next-open,2.402311,41627,181.2,1761,1761,-8503.465,-8503.46499999999,-0.0,event-driven; next-bar-open fills
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,backtrader,next-open,43.667953,40017,797.4,32705,32703,118622.1973,118622.19730000023,-0.0,event-driven; next-bar-open fills
+Vertical scale,sma,deep.npz,1,2932,2932,backtrader,next-open,0.096189,30482,233.0,70,70,-1441.0,-1441.0000000000027,0.0,event-driven; next-bar-open fills
+Vertical scale,sma,wide.npz,100,1000,100000,backtrader,next-open,2.322624,43055,165.5,2203,2201,332015.26,332015.26,0.0,event-driven; next-bar-open fills
+Vertical scale,sma,deep.npz,100,2932,293200,backtrader,next-open,6.906003,42456,258.7,6480,6478,429923.58,429923.57999999996,0.0,event-driven; next-bar-open fills
+Vertical scale,sma,wide.npz,500,1000,500000,backtrader,next-open,11.614288,43050,230.4,11160,11151,663314.94,663314.94,0.0,event-driven; next-bar-open fills
+Vertical scale,sma,wide.npz,643,1000,643000,backtrader,next-open,16.127283,39870,230.3,14266,14254,557478.84,557478.8399999999,0.0,event-driven; next-bar-open fills
+Vertical scale,sma,deep.npz,596,2932,1747472,backtrader,next-open,42.352344,41260,462.2,38634,38623,1738573.62,1738573.62,0.0,event-driven; next-bar-open fills
+"Recent real data, single asset",sma,recent.npz,1,563,563,backtesting.py,next-open,0.005874,95847,111.8,10,10,893.0,892.9999999999995,0.0,event-driven; single-asset engine only
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,backtesting.py,,,,,,,,,,not run: single-asset engine
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,backtesting.py,next-open,0.067905,8291,112.0,562,456,141528.0,,,event-driven; single-asset engine only
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,backtesting.py,,,,,,,,,,not run: single-asset engine
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,backtesting.py,next-open,0.006482,86853,111.7,8,8,-708.91,-708.909999999999,-0.0,event-driven; single-asset engine only
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,backtesting.py,,,,,,,,,,not run: single-asset engine
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,backtesting.py,,,,,,,,,,not run: single-asset engine
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,backtesting.py,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,deep.npz,1,2932,2932,backtesting.py,next-open,0.009891,296436,252.8,70,70,-1441.0,-1441.0000000000027,0.0,event-driven; single-asset engine only
+Vertical scale,sma,wide.npz,100,1000,100000,backtesting.py,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,deep.npz,100,2932,293200,backtesting.py,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,wide.npz,500,1000,500000,backtesting.py,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,wide.npz,643,1000,643000,backtesting.py,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,deep.npz,596,2932,1747472,backtesting.py,,,,,,,,,,not run: single-asset engine
+"Recent real data, single asset",sma,recent.npz,1,563,563,vectorbt,next-open,0.005056,111357,288.1,10,10,893.0,892.9999999999995,0.0,"vectorized; whole-column compute, no per-bar broker loop; numba pre-warmed"
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,vectorbt,next-open,0.010209,1874982,289.3,380,380,160436.0,160435.99999999997,0.0,"vectorized; whole-column compute, no per-bar broker loop; numba pre-warmed"
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,vectorbt,,,,,,,,,,unsupported: no resting order book: orders exist only on the bar they are placed
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,vectorbt,,,,,,,,,,unsupported: no resting order book: orders exist only on the bar they are placed
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,vectorbt,next-open,0.00669,84161,288.1,8,8,-708.91,-708.909999999999,-0.0,"vectorized; whole-column compute, no per-bar broker loop; numba pre-warmed"
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,vectorbt,next-open,0.055419,345403,289.4,314,314,6285.01,6285.009999999997,0.0,"vectorized; whole-column compute, no per-bar broker loop; numba pre-warmed"
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,vectorbt,next-open,0.258982,386128,318.9,1761,1761,-8503.465,-8503.46499999999,-0.0,"vectorized; whole-column compute, no per-bar broker loop; numba pre-warmed"
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,vectorbt,next-open,4.356721,401098,484.3,32703,32703,118622.1973,118622.19730000023,-0.0,"vectorized; whole-column compute, no per-bar broker loop; numba pre-warmed"
+Vertical scale,sma,deep.npz,1,2932,2932,vectorbt,next-open,0.005618,521921,349.4,70,70,-1441.0,-1441.0000000000027,0.0,"vectorized; whole-column compute, no per-bar broker loop; numba pre-warmed"
+Vertical scale,sma,wide.npz,100,1000,100000,vectorbt,next-open,0.015868,6302041,318.7,2201,2201,332015.26,332015.26,0.0,"vectorized; whole-column compute, no per-bar broker loop; numba pre-warmed"
+Vertical scale,sma,deep.npz,100,2932,293200,vectorbt,next-open,0.027887,10513734,374.6,6478,6478,429923.58,429923.57999999996,0.0,"vectorized; whole-column compute, no per-bar broker loop; numba pre-warmed"
+Vertical scale,sma,wide.npz,500,1000,500000,vectorbt,next-open,0.040949,12210348,356.5,11151,11151,663314.94,663314.94,0.0,"vectorized; whole-column compute, no per-bar broker loop; numba pre-warmed"
+Vertical scale,sma,wide.npz,643,1000,643000,vectorbt,next-open,0.053053,12119898,364.9,14254,14254,557478.84,557478.8399999999,0.0,"vectorized; whole-column compute, no per-bar broker loop; numba pre-warmed"
+Vertical scale,sma,deep.npz,596,2932,1747472,vectorbt,next-open,0.126265,13839686,513.0,38623,38623,1738573.62,1738573.62,0.0,"vectorized; whole-column compute, no per-bar broker loop; numba pre-warmed"
+"Recent real data, single asset",sma,recent.npz,1,563,563,pybroker,next-open,0.218914,2572,207.4,10,10,893.0,892.9999999999995,0.0,"event-driven; buy_delay=1 at the next open, analysis/bootstrap disabled"
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,pybroker,next-open,0.301895,63406,213.1,382,380,160436.0,160435.99999999997,0.0,"event-driven; buy_delay=1 at the next open, analysis/bootstrap disabled"
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,pybroker,,,,,,,,,,unsupported: limit orders are not kept open across bars (no GTC resting order)
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,pybroker,,,,,,,,,,unsupported: limit orders are not kept open across bars (no GTC resting order)
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,pybroker,next-open,0.22935,2455,207.6,8,8,-708.91,-708.909999999999,-0.0,"event-driven; buy_delay=1 at the next open, analysis/bootstrap disabled"
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,pybroker,next-open,0.302956,63184,216.3,314,314,6285.01,6285.009999999997,0.0,"event-driven; buy_delay=1 at the next open, analysis/bootstrap disabled"
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,pybroker,next-open,0.711876,140474,274.4,1761,1761,-8503.465,-8503.46499999999,-0.0,"event-driven; buy_delay=1 at the next open, analysis/bootstrap disabled"
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,pybroker,next-open,9.311301,187672,1110.7,32705,32703,118622.1973,118622.19730000023,-0.0,"event-driven; buy_delay=1 at the next open, analysis/bootstrap disabled"
+Vertical scale,sma,deep.npz,1,2932,2932,pybroker,next-open,0.258061,11362,280.8,70,70,-1441.0,-1441.0000000000027,0.0,"event-driven; buy_delay=1 at the next open, analysis/bootstrap disabled"
+Vertical scale,sma,wide.npz,100,1000,100000,pybroker,next-open,0.729561,137069,253.1,2203,2201,332015.26,332015.26,0.0,"event-driven; buy_delay=1 at the next open, analysis/bootstrap disabled"
+Vertical scale,sma,deep.npz,100,2932,293200,pybroker,next-open,1.611142,181983,373.6,6480,6478,429923.58,429923.57999999996,0.0,"event-driven; buy_delay=1 at the next open, analysis/bootstrap disabled"
+Vertical scale,sma,wide.npz,500,1000,500000,pybroker,next-open,2.483216,201352,419.1,11160,11151,663314.94,663314.94,0.0,"event-driven; buy_delay=1 at the next open, analysis/bootstrap disabled"
+Vertical scale,sma,wide.npz,643,1000,643000,pybroker,next-open,3.160252,203465,453.9,14266,14254,557478.84,557478.8399999999,0.0,"event-driven; buy_delay=1 at the next open, analysis/bootstrap disabled"
+Vertical scale,sma,deep.npz,596,2932,1747472,pybroker,next-open,8.541638,204583,877.1,38634,38623,1738573.62,1738573.62,0.0,"event-driven; buy_delay=1 at the next open, analysis/bootstrap disabled"
+"Recent real data, single asset",sma,recent.npz,1,563,563,zipline-reloaded,next-close,0.158542,3551,328.0,10,10,881.0,881.0,0.0,event-driven; bundle ingested outside the timer; an order placed on day T fills at day T+1's close
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,zipline-reloaded,next-close,0.532006,35981,334.5,382,380,158944.1,158944.10000000003,-0.0,event-driven; bundle ingested outside the timer; an order placed on day T fills at day T+1's close
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,zipline-reloaded,next-close,0.235314,2393,329.2,563,434,143755.3,,,event-driven; bundle ingested outside the timer; an order placed on day T fills at day T+1's close
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,zipline-reloaded,next-close,1.989702,9621,358.9,19142,14789,47202699.1,,,event-driven; bundle ingested outside the timer; an order placed on day T fills at day T+1's close
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,zipline-reloaded,next-close,0.156006,3609,328.3,8,8,-977.105,-977.1050000000005,0.0,event-driven; bundle ingested outside the timer; an order placed on day T fills at day T+1's close
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,zipline-reloaded,next-close,0.519529,36845,333.8,314,314,5361.846,5361.846000000014,-0.0,event-driven; bundle ingested outside the timer; an order placed on day T fills at day T+1's close
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,zipline-reloaded,next-close,1.4639,68311,375.9,1761,1761,-4385.84,-4387.535999999998,1.696,event-driven; bundle ingested outside the timer; an order placed on day T fills at day T+1's close; P&L +1.70 vs ledger: the daily bundle stores prices at 0.001 precision; finer prices are rounded
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,zipline-reloaded,next-close,34.729177,50317,649.7,32705,32703,119581.755,119578.94259999992,2.8124,event-driven; bundle ingested outside the timer; an order placed on day T fills at day T+1's close; P&L +2.81 vs ledger: the daily bundle stores prices at 0.001 precision; finer prices are rounded
+Vertical scale,sma,deep.npz,1,2932,2932,zipline-reloaded,next-close,0.728486,4025,411.5,70,70,-598.0,-598.0000000000014,0.0,event-driven; bundle ingested outside the timer; an order placed on day T fills at day T+1's close
+Vertical scale,sma,wide.npz,100,1000,100000,zipline-reloaded,next-close,1.618059,61802,373.5,2203,2201,380047.4,380047.33,0.07,event-driven; bundle ingested outside the timer; an order placed on day T fills at day T+1's close; P&L +0.07 vs ledger: the daily bundle stores prices at 0.001 precision; finer prices are rounded
+Vertical scale,sma,deep.npz,100,2932,293200,zipline-reloaded,next-close,22.890514,12809,404.8,6480,6478,489377.0,489376.86,0.14,event-driven; bundle ingested outside the timer; an order placed on day T fills at day T+1's close; P&L +0.14 vs ledger: the daily bundle stores prices at 0.001 precision; finer prices are rounded
+Vertical scale,sma,wide.npz,500,1000,500000,zipline-reloaded,next-close,37.405138,13367,385.5,11160,11151,681209.9,681209.7999999999,0.1,event-driven; bundle ingested outside the timer; an order placed on day T fills at day T+1's close; P&L +0.10 vs ledger: the daily bundle stores prices at 0.001 precision; finer prices are rounded
+Vertical scale,sma,wide.npz,643,1000,643000,zipline-reloaded,next-close,49.061175,13106,354.2,14266,14254,562205.5,562205.3999999999,0.1,event-driven; bundle ingested outside the timer; an order placed on day T fills at day T+1's close; P&L +0.10 vs ledger: the daily bundle stores prices at 0.001 precision; finer prices are rounded
+Vertical scale,sma,deep.npz,596,2932,1747472,zipline-reloaded,next-close,168.049528,10399,525.1,38634,38623,1783855.1,1783854.91,0.19,event-driven; bundle ingested outside the timer; an order placed on day T fills at day T+1's close; P&L +0.19 vs ledger: the daily bundle stores prices at 0.001 precision; finer prices are rounded
+"Recent real data, single asset",sma,recent.npz,1,563,563,vnpy,next-open,0.000571,985415,104.8,10,10,893.0,892.9999999999995,0.0,event-driven; single-instrument CTA engine; aggressive limits cross at next bar open
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,vnpy,,,,,,,,,,not run: single-asset engine
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,vnpy,next-open,0.00863,65239,105.2,563,457,142854.0,,,event-driven; single-instrument CTA engine; aggressive limits cross at next bar open
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,vnpy,,,,,,,,,,not run: single-asset engine
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,vnpy,next-open,0.002058,273600,105.2,8,8,-708.91,-708.909999999999,-0.0,event-driven; single-instrument CTA engine; aggressive limits cross at next bar open
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,vnpy,,,,,,,,,,not run: single-asset engine
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,vnpy,,,,,,,,,,not run: single-asset engine
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,vnpy,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,deep.npz,1,2932,2932,vnpy,next-open,0.002462,1190942,179.3,70,70,-1441.0,-1441.0000000000027,0.0,event-driven; single-instrument CTA engine; aggressive limits cross at next bar open
+Vertical scale,sma,wide.npz,100,1000,100000,vnpy,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,deep.npz,100,2932,293200,vnpy,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,wide.npz,500,1000,500000,vnpy,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,wide.npz,643,1000,643000,vnpy,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,deep.npz,596,2932,1747472,vnpy,,,,,,,,,,not run: single-asset engine
+"Recent real data, single asset",sma,recent.npz,1,563,563,lumibot,next-open,2.00558,281,297.6,10,10,893.0,892.9999999999995,0.0,event-driven; analysis/tearsheet/progress disabled
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,lumibot,next-open,2.501072,7654,300.7,380,380,160436.0,160435.99999999997,0.0,event-driven; analysis/tearsheet/progress disabled
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,lumibot,next-open,14.383672,39,299.2,562,457,142854.0,,,event-driven; analysis/tearsheet/progress disabled
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,lumibot,next-open,291.181206,66,338.9,19108,16045,51242624.5,,,event-driven; analysis/tearsheet/progress disabled
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,lumibot,next-open,2.203815,255,279.1,8,8,-708.91,-708.909999999999,-0.0,event-driven; analysis/tearsheet/progress disabled
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,lumibot,next-open,2.262461,8461,310.2,314,314,6285.01,6285.009999999997,0.0,event-driven; analysis/tearsheet/progress disabled
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,lumibot,next-open,3.200236,31248,383.3,1761,1761,-8503.465,-8503.46499999999,-0.0,event-driven; analysis/tearsheet/progress disabled
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,lumibot,next-open,38.728641,45121,1196.2,32703,32703,118622.1973,118622.19730000023,-0.0,event-driven; analysis/tearsheet/progress disabled
+Vertical scale,sma,deep.npz,1,2932,2932,lumibot,next-open,2.223996,1318,375.4,70,70,-1441.0,-1441.0000000000027,0.0,event-driven; analysis/tearsheet/progress disabled
+Vertical scale,sma,wide.npz,100,1000,100000,lumibot,next-open,5.53556,18065,385.6,2201,2201,332015.26,332015.26,0.0,event-driven; analysis/tearsheet/progress disabled
+Vertical scale,sma,deep.npz,100,2932,293200,lumibot,next-open,12.542371,23377,562.8,6478,6478,429923.58,429923.57999999996,0.0,event-driven; analysis/tearsheet/progress disabled
+Vertical scale,sma,wide.npz,500,1000,500000,lumibot,next-open,63.538027,7869,589.8,11151,11151,663314.94,663314.94,0.0,event-driven; analysis/tearsheet/progress disabled
+Vertical scale,sma,wide.npz,643,1000,643000,lumibot,next-open,102.879232,6250,627.1,14254,14254,557478.84,557478.8399999999,0.0,event-driven; analysis/tearsheet/progress disabled
+Vertical scale,sma,deep.npz,596,2932,1747472,lumibot,next-open,266.952737,6546,1133.3,38623,38623,1738573.62,1738573.62,0.0,event-driven; analysis/tearsheet/progress disabled
+"Recent real data, single asset",sma,recent.npz,1,563,563,nautilus_trader,same-bar-close,0.009166,61421,215.5,10,10,873.0,873.0999999999999,-0.1,event-driven; full live-parity stack; logging/risk bypassed; MARGIN account (a CASH account aborts on AccountBalanceNegative past ~700 symbols); P&L -0.10 vs ledger: instrument prices have 2-decimal precision; bars with finer prices are rounded
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,nautilus_trader,same-bar-close,0.265508,72096,233.4,382,382,163815.0,163814.00000000006,1.0,event-driven; full live-parity stack; logging/risk bypassed; MARGIN account (a CASH account aborts on AccountBalanceNegative past ~700 symbols); P&L +1.00 vs ledger: instrument prices have 2-decimal precision; bars with finer prices are rounded
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,nautilus_trader,same-bar-close,0.206361,2728,226.4,563,411,118037.0,,,event-driven; full live-parity stack; logging/risk bypassed; MARGIN account (a CASH account aborts on AccountBalanceNegative past ~700 symbols)
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,nautilus_trader,same-bar-close,8.101566,2363,315.8,19142,15100,44270880.0,,,event-driven; full live-parity stack; logging/risk bypassed; MARGIN account (a CASH account aborts on AccountBalanceNegative past ~700 symbols)
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,nautilus_trader,same-bar-close,0.010573,53247,215.5,8,8,-94.78,-94.95899999999801,0.179,event-driven; full live-parity stack; logging/risk bypassed; MARGIN account (a CASH account aborts on AccountBalanceNegative past ~700 symbols); P&L +0.18 vs ledger: instrument prices have 2-decimal precision; bars with finer prices are rounded
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,nautilus_trader,same-bar-close,0.309839,61780,236.0,314,314,8051.8,8051.140999999994,0.659,event-driven; full live-parity stack; logging/risk bypassed; MARGIN account (a CASH account aborts on AccountBalanceNegative past ~700 symbols); P&L +0.66 vs ledger: instrument prices have 2-decimal precision; bars with finer prices are rounded
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,nautilus_trader,same-bar-close,1.817761,55013,320.2,1761,1761,-14149.87,-14192.192000000017,42.322,event-driven; full live-parity stack; logging/risk bypassed; MARGIN account (a CASH account aborts on AccountBalanceNegative past ~700 symbols); P&L +42.32 vs ledger: instrument prices have 2-decimal precision; bars with finer prices are rounded
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,nautilus_trader,same-bar-close,155.961766,11204,1342.9,32705,32705,-11489.3,-11365.175600000031,-124.1244,event-driven; full live-parity stack; logging/risk bypassed; MARGIN account (a CASH account aborts on AccountBalanceNegative past ~700 symbols); P&L -124.12 vs ledger: instrument prices have 2-decimal precision; bars with finer prices are rounded
+Vertical scale,sma,deep.npz,1,2932,2932,nautilus_trader,same-bar-close,0.042786,68526,290.8,70,70,-1557.0,-1557.499999999996,0.5,event-driven; full live-parity stack; logging/risk bypassed; MARGIN account (a CASH account aborts on AccountBalanceNegative past ~700 symbols); P&L +0.50 vs ledger: instrument prices have 2-decimal precision; bars with finer prices are rounded
+Vertical scale,sma,wide.npz,100,1000,100000,nautilus_trader,same-bar-close,1.716293,58265,306.4,2203,2203,334231.5,334224.52,6.98,event-driven; full live-parity stack; logging/risk bypassed; MARGIN account (a CASH account aborts on AccountBalanceNegative past ~700 symbols); P&L +6.98 vs ledger: instrument prices have 2-decimal precision; bars with finer prices are rounded
+Vertical scale,sma,deep.npz,100,2932,293200,nautilus_trader,same-bar-close,7.235062,40525,452.5,6480,6480,430527.5,430514.12000000005,13.38,event-driven; full live-parity stack; logging/risk bypassed; MARGIN account (a CASH account aborts on AccountBalanceNegative past ~700 symbols); P&L +13.38 vs ledger: instrument prices have 2-decimal precision; bars with finer prices are rounded
+Vertical scale,sma,wide.npz,500,1000,500000,nautilus_trader,same-bar-close,16.927564,29538,447.8,11160,11160,626547.5,626534.4199999999,13.08,event-driven; full live-parity stack; logging/risk bypassed; MARGIN account (a CASH account aborts on AccountBalanceNegative past ~700 symbols); P&L +13.08 vs ledger: instrument prices have 2-decimal precision; bars with finer prices are rounded
+Vertical scale,sma,wide.npz,643,1000,643000,nautilus_trader,same-bar-close,26.841351,23956,520.4,14266,14266,523322.0,523313.4199999999,8.58,event-driven; full live-parity stack; logging/risk bypassed; MARGIN account (a CASH account aborts on AccountBalanceNegative past ~700 symbols); P&L +8.58 vs ledger: instrument prices have 2-decimal precision; bars with finer prices are rounded
+Vertical scale,sma,deep.npz,596,2932,1747472,nautilus_trader,same-bar-close,207.197866,8434,1049.9,38634,38634,1751142.0,1751107.3900000001,34.61,event-driven; full live-parity stack; logging/risk bypassed; MARGIN account (a CASH account aborts on AccountBalanceNegative past ~700 symbols); P&L +34.61 vs ledger: instrument prices have 2-decimal precision; bars with finer prices are rounded
+"Recent real data, single asset",sma,recent.npz,1,563,563,bt,weight-based,0.038305,14698,190.2,10,,350098.5195,,,"weight-based portfolio engine; equal-weight proxy, close fills (no next-open convention), 1e6 capital"
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,bt,weight-based,0.179943,106378,191.4,380,,731355.7981,,,"weight-based portfolio engine; equal-weight proxy, close fills (no next-open convention), 1e6 capital"
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,bt,,,,,,,,,,unsupported: weight-based rebalancer: no per-symbol orders or share-count targets
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,bt,,,,,,,,,,unsupported: weight-based rebalancer: no per-symbol orders or share-count targets
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,bt,,,,,,,,,,unsupported: weight-based rebalancer: no per-symbol orders or share-count targets
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,bt,,,,,,,,,,unsupported: weight-based rebalancer: no per-symbol orders or share-count targets
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,bt,,,,,,,,,,unsupported: weight-based rebalancer: no per-symbol orders or share-count targets
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,bt,,,,,,,,,,unsupported: weight-based rebalancer: no per-symbol orders or share-count targets
+Vertical scale,sma,deep.npz,1,2932,2932,bt,weight-based,0.140622,20850,261.6,70,,29818.9201,,,"weight-based portfolio engine; equal-weight proxy, close fills (no next-open convention), 1e6 capital"
+Vertical scale,sma,wide.npz,100,1000,100000,bt,weight-based,0.743458,134507,220.5,2201,,676771.1787,,,"weight-based portfolio engine; equal-weight proxy, close fills (no next-open convention), 1e6 capital"
+Vertical scale,sma,deep.npz,100,2932,293200,bt,weight-based,2.180211,134482,283.6,6478,,1726432.6102,,,"weight-based portfolio engine; equal-weight proxy, close fills (no next-open convention), 1e6 capital"
+Vertical scale,sma,wide.npz,500,1000,500000,bt,weight-based,3.67355,136108,262.2,11151,,498226.4768,,,"weight-based portfolio engine; equal-weight proxy, close fills (no next-open convention), 1e6 capital"
+Vertical scale,sma,wide.npz,643,1000,643000,bt,weight-based,4.438294,144875,281.6,14254,,418271.7587,,,"weight-based portfolio engine; equal-weight proxy, close fills (no next-open convention), 1e6 capital"
+Vertical scale,sma,deep.npz,596,2932,1747472,bt,weight-based,11.908782,146738,410.1,38623,,1516449.1652,,,"weight-based portfolio engine; equal-weight proxy, close fills (no next-open convention), 1e6 capital"
+"Recent real data, single asset",sma,recent.npz,1,563,563,qstrader,weight-based,0.151062,3727,85.6,10,,366471378.662,,,weight-based portfolio engine; equal-weight proxy; CSVs written outside the timer
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,qstrader,weight-based,3.610853,5301,93.0,382,,814627059.974,,,weight-based portfolio engine; equal-weight proxy; CSVs written outside the timer
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,qstrader,,,,,,,,,,unsupported: weight-based rebalancer: no per-symbol orders or share-count targets
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,qstrader,,,,,,,,,,unsupported: weight-based rebalancer: no per-symbol orders or share-count targets
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,qstrader,,,,,,,,,,unsupported: weight-based rebalancer: no per-symbol orders or share-count targets
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,qstrader,,,,,,,,,,unsupported: weight-based rebalancer: no per-symbol orders or share-count targets
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,qstrader,,,,,,,,,,unsupported: weight-based rebalancer: no per-symbol orders or share-count targets
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,qstrader,,,,,,,,,,unsupported: weight-based rebalancer: no per-symbol orders or share-count targets
+Vertical scale,sma,deep.npz,1,2932,2932,qstrader,weight-based,1.168756,2509,163.0,70,,22405412.635,,,weight-based portfolio engine; equal-weight proxy; CSVs written outside the timer
+Vertical scale,sma,wide.npz,100,1000,100000,qstrader,weight-based,19.513263,5125,162.0,2203,,803250371.8212,,,weight-based portfolio engine; equal-weight proxy; CSVs written outside the timer
+Vertical scale,sma,deep.npz,100,2932,293200,qstrader,weight-based,59.96212,4890,271.5,6480,,2222914630.2529,,,weight-based portfolio engine; equal-weight proxy; CSVs written outside the timer
+Vertical scale,sma,wide.npz,500,1000,500000,qstrader,weight-based,150.4854,3323,434.7,11160,,668094379.6959,,,weight-based portfolio engine; equal-weight proxy; CSVs written outside the timer
+Vertical scale,sma,wide.npz,643,1000,643000,qstrader,weight-based,218.208033,2947,533.3,14266,,597707954.4526,,,weight-based portfolio engine; equal-weight proxy; CSVs written outside the timer
+Vertical scale,sma,deep.npz,596,2932,1747472,qstrader,,,,,,,,,,skipped: projected 593s over 300s budget
+"Recent real data, single asset",sma,recent.npz,1,563,563,pyalgotrade,next-open,0.003855,146058,39.1,10,10,893.0,892.9999999999995,0.0,event-driven; market orders fill at next bar open
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,pyalgotrade,next-open,0.079042,242174,59.7,382,380,160436.0,160435.99999999997,0.0,event-driven; market orders fill at next bar open
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,pyalgotrade,next-open,0.047182,11933,39.2,563,457,142854.0,,,event-driven; market orders fill at next bar open
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,pyalgotrade,next-open,1.122682,17050,60.7,19142,16045,51242551.5,,,event-driven; market orders fill at next bar open
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,pyalgotrade,next-open,0.005461,103093,39.4,8,8,-708.91,-708.909999999999,-0.0,event-driven; market orders fill at next bar open
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,pyalgotrade,next-open,0.129979,147270,62.4,314,314,6285.01,6285.009999999997,0.0,event-driven; market orders fill at next bar open
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,pyalgotrade,next-open,0.702323,142385,200.3,1761,1761,-8503.465,-8503.46499999999,-0.0,event-driven; market orders fill at next bar open
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,pyalgotrade,next-open,20.076754,87040,1075.6,32705,32703,118622.1973,118622.19730000023,-0.0,event-driven; market orders fill at next bar open
+Vertical scale,sma,deep.npz,1,2932,2932,pyalgotrade,next-open,0.025322,115790,111.3,70,70,-1441.0,-1441.0000000000027,0.0,event-driven; market orders fill at next bar open
+Vertical scale,sma,wide.npz,100,1000,100000,pyalgotrade,next-open,0.40572,246475,180.3,2203,2201,332015.26,332015.26,0.0,event-driven; market orders fill at next bar open
+Vertical scale,sma,deep.npz,100,2932,293200,pyalgotrade,next-open,1.674068,175142,295.3,6480,6478,429923.58,429923.57999999996,0.0,event-driven; market orders fill at next bar open
+Vertical scale,sma,wide.npz,500,1000,500000,pyalgotrade,next-open,2.15746,231754,653.4,11160,11151,663314.94,663314.94,0.0,event-driven; market orders fill at next bar open
+Vertical scale,sma,wide.npz,643,1000,643000,pyalgotrade,next-open,2.760438,232934,829.2,14266,14254,557478.84,557478.8399999999,0.0,event-driven; market orders fill at next bar open
+Vertical scale,sma,deep.npz,596,2932,1747472,pyalgotrade,next-open,11.036367,158338,1035.0,38634,38623,1738573.62,1738573.62,0.0,event-driven; market orders fill at next bar open
+"Recent real data, single asset",sma,recent.npz,1,563,563,cipher-bt,,0.011217,50190,134.5,10,,,,,"event-driven; single-asset; pandas iterrows loop; close fills, not next-open"
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,cipher-bt,,,,,,,,,,not run: single-asset engine
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,cipher-bt,,,,,,,,,,unsupported: not implemented in this harness
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,cipher-bt,,,,,,,,,,not run: single-asset engine
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,cipher-bt,,,,,,,,,,unsupported: not implemented in this harness
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,cipher-bt,,,,,,,,,,not run: single-asset engine
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,cipher-bt,,,,,,,,,,not run: single-asset engine
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,cipher-bt,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,deep.npz,1,2932,2932,cipher-bt,,0.071311,41115,206.4,70,,,,,"event-driven; single-asset; pandas iterrows loop; close fills, not next-open"
+Vertical scale,sma,wide.npz,100,1000,100000,cipher-bt,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,deep.npz,100,2932,293200,cipher-bt,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,wide.npz,500,1000,500000,cipher-bt,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,wide.npz,643,1000,643000,cipher-bt,,,,,,,,,,not run: single-asset engine
+Vertical scale,sma,deep.npz,596,2932,1747472,cipher-bt,,,,,,,,,,not run: single-asset engine
+"Recent real data, single asset",sma,recent.npz,1,563,563,freqtrade,next-open,0.01873,30058,406.5,10,,893.0,892.9999999999995,0.0,relabelled as OKX USDT pairs; next-candle-open fills; trades open at the end re-marked at the last close
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,freqtrade,next-open,0.409525,46742,424.7,380,,160436.0007,160435.99999999997,0.0007,relabelled as OKX USDT pairs; next-candle-open fills; trades open at the end re-marked at the last close
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,freqtrade,,,,,,,,,,unsupported: entries are signal-driven; no GTC resting limit book per bar
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,freqtrade,,,,,,,,,,unsupported: entries are signal-driven; no GTC resting limit book per bar
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,freqtrade,next-open,0.015852,35517,406.9,8,,-708.91,-708.909999999999,-0.0,relabelled as OKX USDT pairs; next-candle-open fills; trades open at the end re-marked at the last close
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,freqtrade,next-open,0.31708,60370,429.2,314,,6285.0099,6285.009999999997,-0.0001,relabelled as OKX USDT pairs; next-candle-open fills; trades open at the end re-marked at the last close
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,freqtrade,,,,,,,,,,unsupported: only 34 OKX USDT pairs with fine precision for 100 symbols
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,freqtrade,,,,,,,,,,unsupported: only 34 OKX USDT pairs with fine precision for 596 symbols
+Vertical scale,sma,deep.npz,1,2932,2932,freqtrade,next-open,0.065637,44670,458.6,70,,-1441.0,-1441.0000000000027,0.0,relabelled as OKX USDT pairs; next-candle-open fills; trades open at the end re-marked at the last close
+Vertical scale,sma,wide.npz,100,1000,100000,freqtrade,,,,,,,,,,unsupported: only 34 OKX USDT pairs with fine precision for 100 symbols
+Vertical scale,sma,deep.npz,100,2932,293200,freqtrade,,,,,,,,,,unsupported: only 34 OKX USDT pairs with fine precision for 100 symbols
+Vertical scale,sma,wide.npz,500,1000,500000,freqtrade,,,,,,,,,,unsupported: only 34 OKX USDT pairs with fine precision for 500 symbols
+Vertical scale,sma,wide.npz,643,1000,643000,freqtrade,,,,,,,,,,unsupported: only 34 OKX USDT pairs with fine precision for 643 symbols
+Vertical scale,sma,deep.npz,596,2932,1747472,freqtrade,,,,,,,,,,unsupported: only 34 OKX USDT pairs with fine precision for 596 symbols
+"Recent real data, single asset",sma,recent.npz,1,563,563,qlib,next-open,0.135379,4159,260.7,10,,893.0,892.9999999999995,0.0,"qlib.backtest, order-level strategy; fills at the step's open; float32 price storage"
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,qlib,next-open,0.425716,44964,269.1,380,,160435.9903,160435.99999999997,-0.0097,"qlib.backtest, order-level strategy; fills at the step's open; float32 price storage"
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,qlib,,,,,,,,,,unsupported: orders live for one trading step; no GTC resting book
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,qlib,,,,,,,,,,unsupported: orders live for one trading step; no GTC resting book
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,qlib,next-open,0.131354,4286,260.2,8,,-708.9103,-708.909999999999,-0.0003,"qlib.backtest, order-level strategy; fills at the step's open; float32 price storage"
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,qlib,next-open,0.284764,67220,268.3,314,,6285.0075,6285.009999999997,-0.0025,"qlib.backtest, order-level strategy; fills at the step's open; float32 price storage"
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,qlib,next-open,1.064086,93977,307.3,1761,,-8503.4607,-8503.46499999999,0.0043,"qlib.backtest, order-level strategy; fills at the step's open; float32 price storage"
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,qlib,next-open,13.46763,129753,934.0,32703,,118622.1984,118622.19730000023,0.0011,"qlib.backtest, order-level strategy; fills at the step's open; float32 price storage"
+Vertical scale,sma,deep.npz,1,2932,2932,qlib,next-open,0.621595,4717,351.2,70,,-1441.0009,-1441.0000000000027,-0.0009,"qlib.backtest, order-level strategy; fills at the step's open; float32 price storage"
+Vertical scale,sma,wide.npz,100,1000,100000,qlib,next-open,1.63631,61113,332.7,2201,,332015.2557,332015.26,-0.0043,"qlib.backtest, order-level strategy; fills at the step's open; float32 price storage"
+Vertical scale,sma,deep.npz,100,2932,293200,qlib,next-open,4.650973,63041,389.1,6478,,429923.5581,429923.57999999996,-0.0219,"qlib.backtest, order-level strategy; fills at the step's open; float32 price storage; P&L -0.02 vs ledger: its binary data format stores prices as float32"
+Vertical scale,sma,wide.npz,500,1000,500000,qlib,next-open,6.899976,72464,438.2,11151,,663314.9462,663314.94,0.0062,"qlib.backtest, order-level strategy; fills at the step's open; float32 price storage"
+Vertical scale,sma,wide.npz,643,1000,643000,qlib,next-open,8.664941,74207,468.6,14254,,557478.8444,557478.8399999999,0.0044,"qlib.backtest, order-level strategy; fills at the step's open; float32 price storage"
+Vertical scale,sma,deep.npz,596,2932,1747472,qlib,next-open,24.829305,70379,805.7,38623,,1738573.6531,1738573.62,0.0331,"qlib.backtest, order-level strategy; fills at the step's open; float32 price storage; P&L +0.03 vs ledger: its binary data format stores prices as float32"
+"Recent real data, single asset",sma,recent.npz,1,563,563,jesse,same-bar-close,0.009685,58132,307.1,10,,873.1,873.0999999999999,0.0,event-driven research backtest; market orders at the current candle's price
+"Recent real data, multi asset",sma,recent.npz,34,563,19142,jesse,same-bar-close,0.156502,122312,310.9,382,,163814.0,163814.00000000006,-0.0,event-driven research backtest; market orders at the current candle's price
+"Resting limit orders, single asset",resting,recent.npz,1,563,563,jesse,,,,,,,,,,unsupported: not implemented in this harness
+"Resting limit orders, multi asset",resting,recent.npz,34,563,19142,jesse,,,,,,,,,,unsupported: not implemented in this harness
+Multi-timeframe strategy,mtf,recent.npz,1,563,563,jesse,same-bar-close,0.010818,52041,307.1,8,,-94.959,-94.95899999999801,-0.0,event-driven research backtest; market orders at the current candle's price
+Multi-timeframe strategy,mtf,recent.npz,34,563,19142,jesse,same-bar-close,0.177072,108103,312.9,314,,8051.141,8051.140999999994,0.0,event-driven research backtest; market orders at the current candle's price
+Multi-timeframe strategy,mtf,wide.npz,100,1000,100000,jesse,same-bar-close,1.039464,96203,367.6,1761,,-14192.192,-14192.192000000017,0.0,event-driven research backtest; market orders at the current candle's price
+Multi-timeframe strategy,mtf,deep.npz,596,2932,1747472,jesse,same-bar-close,26.925265,64901,925.6,32705,,-11365.1756,-11365.175600000031,0.0,event-driven research backtest; market orders at the current candle's price
+Vertical scale,sma,deep.npz,1,2932,2932,jesse,same-bar-close,0.029089,100795,377.0,70,,-1557.5,-1557.499999999996,-0.0,event-driven research backtest; market orders at the current candle's price
+Vertical scale,sma,wide.npz,100,1000,100000,jesse,same-bar-close,1.010439,98967,349.2,2203,,334224.52,334224.52,0.0,event-driven research backtest; market orders at the current candle's price
+Vertical scale,sma,deep.npz,100,2932,293200,jesse,same-bar-close,2.887452,101543,445.3,6480,,430514.12,430514.12000000005,-0.0,event-driven research backtest; market orders at the current candle's price
+Vertical scale,sma,wide.npz,500,1000,500000,jesse,same-bar-close,10.118162,49416,433.8,11160,,626534.42,626534.4199999999,0.0,event-driven research backtest; market orders at the current candle's price
+Vertical scale,sma,wide.npz,643,1000,643000,jesse,same-bar-close,15.478053,41543,438.6,14266,,523313.42,523313.4199999999,0.0,event-driven research backtest; market orders at the current candle's price
+Vertical scale,sma,deep.npz,596,2932,1747472,jesse,same-bar-close,39.74413,43968,795.0,38634,,1751107.39,1751107.3900000001,-0.0,event-driven research backtest; market orders at the current candle's price

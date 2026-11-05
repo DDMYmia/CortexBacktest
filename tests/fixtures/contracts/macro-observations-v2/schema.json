@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "macro-observations-v2",
+  "type": "object",
+  "required": [
+    "contractVersion",
+    "seriesId",
+    "observationDate",
+    "realtimeStart",
+    "realtimeEnd",
+    "receiptId",
+    "recordedAt",
+    "availableAt",
+    "asOf",
+    "availabilityPolicy",
+    "operation",
+    "value",
+    "valueRaw"
+  ],
+  "properties": {
+    "contractVersion": {
+      "type": "string",
+      "const": "macro-observations-v2"
+    },
+    "seriesId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observationDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "realtimeStart": {
+      "type": "string",
+      "format": "date"
+    },
+    "realtimeEnd": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "receiptId": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "recordedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "availableAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "asOf": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "availabilityPolicy": {
+      "type": "string",
+      "const": "receipt-and-source-date-end-utc-minus-12"
+    },
+    "operation": {
+      "type": "string",
+      "enum": [
+        "seed",
+        "insert",
+        "update",
+        "delete"
+      ]
+    },
+    "value": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": -1.7976931348623157e+308,
+          "maximum": 1.7976931348623157e+308
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "valueRaw": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "const": "delete"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "value": {
+            "type": "null"
+          },
+          "valueRaw": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": true
+}

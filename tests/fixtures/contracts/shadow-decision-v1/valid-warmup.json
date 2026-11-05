@@ -1,0 +1,31 @@
+{
+  "contractVersion": "shadow-decision-v1",
+  "mode": "shadow",
+  "executionAuthorized": false,
+  "strategySha256": "3df12a71ee3a71496c326c75fd8e69f56e34055fabb00fb4179791368fc10cc6",
+  "engineCodeSha256": "1820973c797e99ea8ac3941a39cbed0501eba28d33dee0779e7715206e8fcdf6",
+  "inputSha256": "d31c5d31d3a4c2b729690413f45cea158c6120d0701fa597cc7284fd65981324",
+  "snapshotAsOf": "2026-09-08T20:00:01+00:00",
+  "warmup": {
+    "inputSha256": "9cecdda465502f986d1daa0df9cb705347f7a5be509b5f546b4c5d92079ccdeb",
+    "asOf": "2026-09-03T20:00:10+00:00",
+    "recordCount": 3,
+    "ordering": "market-event-time"
+  },
+  "accountRef": "test-account",
+  "accountSourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "accountEventTime": "2026-09-08T20:00:01+00:00",
+  "decisions": [
+    {
+      "signalId": "23f1df34c83d9c501e50b951813327ac41b04a9a1d5213eda0404bf65e7619ea",
+      "symbol": "INSTRUMENT:1",
+      "eventTime": "2026-09-08T20:00:00+00:00",
+      "expiresAt": "2026-09-08T20:01:01+00:00",
+      "currentQuantity": "0",
+      "targetQuantity": "2.25",
+      "side": "BUY",
+      "quantity": "2.25"
+    }
+  ],
+  "decisionSha256": "4d7e794ae6482a0e2a399a637becd0c27d50351d8c289ec1b91920758fe141de"
+}

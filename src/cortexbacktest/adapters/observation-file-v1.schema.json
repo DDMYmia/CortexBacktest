@@ -1,0 +1,931 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "observation-file-v1",
+  "type": "object",
+  "required": [
+    "contractVersion",
+    "recordVersion",
+    "recordCount",
+    "asOf",
+    "scope",
+    "records"
+  ],
+  "properties": {
+    "contractVersion": {
+      "type": "string",
+      "const": "observation-file-v1"
+    },
+    "recordVersion": {
+      "type": "string",
+      "enum": [
+        "factor-observations-v1",
+        "macro-observations-v2",
+        "market-bars-v2",
+        "market-bars-v4"
+      ]
+    },
+    "recordCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "asOf": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scope": {
+      "type": "object"
+    },
+    "records": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "recordVersion": {
+            "const": "factor-observations-v1"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "scope": {
+            "type": "object",
+            "required": [
+              "factorName",
+              "symbolSource",
+              "symbols",
+              "start",
+              "end"
+            ],
+            "properties": {
+              "factorName": {
+                "type": "string",
+                "minLength": 1
+              },
+              "symbolSource": {
+                "type": "string",
+                "minLength": 1
+              },
+              "symbols": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "start": {
+                "type": "string",
+                "format": "date"
+              },
+              "end": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "additionalProperties": false
+          },
+          "records": {
+            "items": {
+              "title": "factor-observations-v1",
+              "type": "object",
+              "required": [
+                "contractVersion",
+                "factor_value_id",
+                "instrument_id",
+                "entity_receipt_id",
+                "symbol",
+                "symbol_source",
+                "factor_name",
+                "source",
+                "source_version",
+                "event_id",
+                "market_mic",
+                "as_of",
+                "event_time",
+                "score_known_at",
+                "recorded_at",
+                "entity_known_at",
+                "identity_known_at",
+                "known_at",
+                "value",
+                "metadata"
+              ],
+              "properties": {
+                "contractVersion": {
+                  "type": "string",
+                  "const": "factor-observations-v1"
+                },
+                "factor_value_id": {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]*$"
+                },
+                "instrument_id": {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]*$"
+                },
+                "entity_receipt_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[1-9][0-9]*$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "symbol": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "symbol_source": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "factor_name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source_version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "event_id": {
+                  "type": "string"
+                },
+                "market_mic": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[A-Z0-9]{4}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "as_of": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "event_time": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "score_known_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "recorded_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "entity_known_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "identity_known_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "known_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "value": {
+                  "type": "number",
+                  "minimum": -1.7976931348623157e+308,
+                  "maximum": 1.7976931348623157e+308
+                },
+                "metadata": {
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "factor_name": {
+                        "const": "news_sentiment"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "entity_receipt_id": {
+                        "type": "string"
+                      },
+                      "event_id": {
+                        "minLength": 1
+                      },
+                      "symbol_source": {
+                        "const": "fmp"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "recordVersion": {
+            "const": "macro-observations-v2"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "scope": {
+            "type": "object",
+            "required": [
+              "seriesId",
+              "start",
+              "end"
+            ],
+            "properties": {
+              "seriesId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "start": {
+                "type": "string",
+                "format": "date"
+              },
+              "end": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "additionalProperties": false
+          },
+          "records": {
+            "items": {
+              "title": "macro-observations-v2",
+              "type": "object",
+              "required": [
+                "contractVersion",
+                "seriesId",
+                "observationDate",
+                "realtimeStart",
+                "realtimeEnd",
+                "receiptId",
+                "recordedAt",
+                "availableAt",
+                "asOf",
+                "availabilityPolicy",
+                "operation",
+                "value",
+                "valueRaw"
+              ],
+              "properties": {
+                "contractVersion": {
+                  "type": "string",
+                  "const": "macro-observations-v2"
+                },
+                "seriesId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "observationDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "realtimeStart": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "realtimeEnd": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "receiptId": {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]*$"
+                },
+                "recordedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "availableAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "asOf": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "availabilityPolicy": {
+                  "type": "string",
+                  "const": "receipt-and-source-date-end-utc-minus-12"
+                },
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "seed",
+                    "insert",
+                    "update",
+                    "delete"
+                  ]
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": -1.7976931348623157e+308,
+                      "maximum": 1.7976931348623157e+308
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "valueRaw": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "operation": {
+                        "const": "delete"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "value": {
+                        "type": "null"
+                      },
+                      "valueRaw": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              ],
+              "additionalProperties": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "recordVersion": {
+            "const": "market-bars-v2"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "scope": {
+            "type": "object",
+            "required": [
+              "source",
+              "adjustment",
+              "start",
+              "end",
+              "sessions"
+            ],
+            "properties": {
+              "source": {
+                "type": "string",
+                "minLength": 1
+              },
+              "adjustment": {
+                "type": "string",
+                "enum": [
+                  "unadjusted",
+                  "split",
+                  "total_return"
+                ]
+              },
+              "start": {
+                "type": "string",
+                "format": "date"
+              },
+              "end": {
+                "type": "string",
+                "format": "date"
+              },
+              "sessions": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "instrumentId",
+                    "sessionDate",
+                    "sessionClose"
+                  ],
+                  "properties": {
+                    "instrumentId": {
+                      "type": "string",
+                      "pattern": "^[1-9][0-9]*$"
+                    },
+                    "sessionDate": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "sessionClose": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "description": "Requested sessions. Uniqueness is enforced by the consumer on (instrumentId, sessionDate) rather than by uniqueItems: whole-object comparison is quadratic -- 111,519 sessions cost 6.2 billion field comparisons -- and it is also weaker, since two entries naming the same session with different sessionClose are distinct objects but one contradictory request."
+              }
+            },
+            "additionalProperties": false
+          },
+          "records": {
+            "items": {
+              "title": "market-bars-v2",
+              "type": "object",
+              "required": [
+                "contractVersion",
+                "instrumentId",
+                "sessionDate",
+                "adjustment",
+                "ohlcBasis",
+                "source",
+                "adjustmentProvenance",
+                "sessionClose",
+                "sourceKnownAt",
+                "recordedAt",
+                "availableAt",
+                "asOf",
+                "open",
+                "high",
+                "low",
+                "close",
+                "adjClose",
+                "volume"
+              ],
+              "properties": {
+                "contractVersion": {
+                  "type": "string",
+                  "const": "market-bars-v2"
+                },
+                "instrumentId": {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]*$"
+                },
+                "sessionDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "adjustment": {
+                  "type": "string",
+                  "enum": [
+                    "unadjusted",
+                    "split",
+                    "total_return"
+                  ]
+                },
+                "ohlcBasis": {
+                  "type": "string",
+                  "const": "unadjusted"
+                },
+                "source": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "adjustmentProvenance": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sessionClose": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "sourceKnownAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "recordedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "availableAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "asOf": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "open": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1.7976931348623157e+308,
+                  "exclusiveMinimum": 0
+                },
+                "high": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1.7976931348623157e+308,
+                  "exclusiveMinimum": 0
+                },
+                "low": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1.7976931348623157e+308,
+                  "exclusiveMinimum": 0
+                },
+                "close": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1.7976931348623157e+308,
+                  "exclusiveMinimum": 0
+                },
+                "adjClose": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1.7976931348623157e+308,
+                  "exclusiveMinimum": 0
+                },
+                "volume": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1.7976931348623157e+308
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "recordVersion": {
+            "const": "market-bars-v4"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "scope": {
+            "type": "object",
+            "required": [
+              "source",
+              "adjustment",
+              "start",
+              "end",
+              "sessions"
+            ],
+            "properties": {
+              "source": {
+                "type": "string",
+                "minLength": 1
+              },
+              "adjustment": {
+                "type": "string",
+                "enum": [
+                  "unadjusted",
+                  "split",
+                  "total_return"
+                ]
+              },
+              "start": {
+                "type": "string",
+                "format": "date"
+              },
+              "end": {
+                "type": "string",
+                "format": "date"
+              },
+              "sessions": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "instrumentId",
+                    "sessionDate",
+                    "sessionClose"
+                  ],
+                  "properties": {
+                    "instrumentId": {
+                      "type": "string",
+                      "pattern": "^[1-9][0-9]*$"
+                    },
+                    "sessionDate": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "sessionClose": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "description": "Requested sessions. Uniqueness is enforced by the consumer on (instrumentId, sessionDate) rather than by uniqueItems: whole-object comparison is quadratic -- 111,519 sessions cost 6.2 billion field comparisons -- and it is also weaker, since two entries naming the same session with different sessionClose are distinct objects but one contradictory request."
+              }
+            },
+            "additionalProperties": false
+          },
+          "records": {
+            "items": {
+              "title": "market-bars-v4",
+              "type": "object",
+              "required": [
+                "contractVersion",
+                "instrumentId",
+                "sessionDate",
+                "adjustment",
+                "ohlcBasis",
+                "source",
+                "adjustmentProvenance",
+                "sessionClose",
+                "sourceKnownAt",
+                "recordedAt",
+                "availableAt",
+                "asOf",
+                "open",
+                "high",
+                "low",
+                "close",
+                "adjClose",
+                "volume",
+                "invalidReason"
+              ],
+              "properties": {
+                "contractVersion": {
+                  "type": "string",
+                  "const": "market-bars-v4"
+                },
+                "instrumentId": {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]*$"
+                },
+                "sessionDate": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "adjustment": {
+                  "type": "string",
+                  "enum": [
+                    "unadjusted",
+                    "split",
+                    "total_return"
+                  ]
+                },
+                "ohlcBasis": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "const": "unadjusted"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "source": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "adjustmentProvenance": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "sessionClose": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "sourceKnownAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "recordedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "availableAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "asOf": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "open": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1.7976931348623157e+308,
+                      "exclusiveMinimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "high": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1.7976931348623157e+308,
+                      "exclusiveMinimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "low": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1.7976931348623157e+308,
+                      "exclusiveMinimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "close": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1.7976931348623157e+308,
+                      "exclusiveMinimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "adjClose": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1.7976931348623157e+308,
+                      "exclusiveMinimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "volume": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1.7976931348623157e+308
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "invalidReason": {
+                  "enum": [
+                    null,
+                    "unverified_price_basis"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "invalidReason": {
+                        "type": "null"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "open": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1.7976931348623157e+308,
+                        "exclusiveMinimum": 0
+                      },
+                      "high": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1.7976931348623157e+308,
+                        "exclusiveMinimum": 0
+                      },
+                      "low": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1.7976931348623157e+308,
+                        "exclusiveMinimum": 0
+                      },
+                      "close": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1.7976931348623157e+308,
+                        "exclusiveMinimum": 0
+                      },
+                      "adjClose": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1.7976931348623157e+308,
+                        "exclusiveMinimum": 0
+                      },
+                      "volume": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1.7976931348623157e+308
+                      },
+                      "ohlcBasis": {
+                        "type": "string",
+                        "const": "unadjusted"
+                      },
+                      "adjustmentProvenance": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  },
+                  "else": {
+                    "properties": {
+                      "open": {
+                        "type": "null"
+                      },
+                      "high": {
+                        "type": "null"
+                      },
+                      "low": {
+                        "type": "null"
+                      },
+                      "close": {
+                        "type": "null"
+                      },
+                      "adjClose": {
+                        "type": "null"
+                      },
+                      "volume": {
+                        "type": "null"
+                      },
+                      "ohlcBasis": {
+                        "type": "null"
+                      },
+                      "adjustmentProvenance": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

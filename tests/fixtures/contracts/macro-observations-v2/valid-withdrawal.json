@@ -1,0 +1,15 @@
+{
+  "contractVersion": "macro-observations-v2",
+  "seriesId": "GDP",
+  "observationDate": "2020-01-01",
+  "realtimeStart": "2020-04-29",
+  "realtimeEnd": "9999-12-31",
+  "receiptId": "2",
+  "recordedAt": "2020-05-02T10:00:00Z",
+  "availableAt": "2020-05-02T10:00:00Z",
+  "asOf": "2020-05-03T00:00:00Z",
+  "availabilityPolicy": "receipt-and-source-date-end-utc-minus-12",
+  "operation": "delete",
+  "value": null,
+  "valueRaw": null
+}

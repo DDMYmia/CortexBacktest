@@ -1,0 +1,49 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+.venv*/
+venv/
+dist/
+build/
+.DS_Store
+
+# Reference clones are for local architecture study. Keep them out of this
+# engine's source history and release packages.
+# No trailing slash: the clones are often a symlink to a shared copy outside
+# the repo, and a "references/" pattern would not match that.
+references
+
+# Generated example outputs.
+examples/output/
+
+# Ingested market data: large, licensed by the vendor, and reproducible
+# from scripts/fetch_option_chains.py.
+/data/
+
+# Benchmark datasets and competitor virtualenvs: large, machine-local, and
+# rebuildable from the data server by prep.py.
+benchmarks/real_data_comparison/*.npz
+benchmarks/real_data_comparison/universe_daily.parquet
+benchmarks/real_data_comparison/recent_daily.parquet
+benchmarks/real_data_comparison/venv_*/
+benchmarks/real_data_comparison/results.csv
+
+# Runtime scratch the competitor runners create next to themselves.
+benchmarks/real_data_comparison/.qs_*/
+benchmarks/real_data_comparison/.zipline/
+benchmarks/real_data_comparison/.qlib_*/
+benchmarks/real_data_comparison/.freqtrade/
+benchmarks/real_data_comparison/logs/
+
+# Local raw research artifacts; summaries and CI baselines remain tracked.
+/benchmark-results/**/data/
+/benchmark-results/**/*-auto-records/
+/benchmark-results/**/*.prof
+/benchmark-results/**/*.parquet
+/benchmark-results/**/*.jsonl
+/benchmark-results/real-market-2026-07-11/SPY_*.csv
+/output/

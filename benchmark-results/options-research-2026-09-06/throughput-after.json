@@ -1,0 +1,27 @@
+{
+  "frames": 1000,
+  "quotes": 21000,
+  "repeats": 3,
+  "seconds": [
+    0.13754791708197445,
+    0.11322941607795656,
+    0.10918445896822959
+  ],
+  "median_seconds": 0.11322941607795656,
+  "frames_per_second": 8831.627280595678,
+  "quotes_per_second": 185464.17289250923,
+  "data_digest": "47223ef2d98ad5ba76daa40e91e4cc121183a40e43421de0af1c23ccddf932b7",
+  "summary": {
+    "initial_cash": 100000.0,
+    "final_equity": 99787.00000000012,
+    "net_pnl": -212.99999999988358,
+    "total_return": -0.002129999999998855,
+    "max_drawdown": -0.002129999999998855,
+    "frame_expected_shortfall_95": 2.129999999998836e-06,
+    "fills": 20,
+    "margin_breach_frames": 0,
+    "max_margin": 6200.0
+  },
+  "includes": "cashbook, quote validation, manifest hashing and retained snapshots",
+  "excludes": "input construction, pricing/IV, empirical strategy feature calculation"
+}

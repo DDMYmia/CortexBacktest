@@ -1,0 +1,26 @@
+{
+  "contractVersion": "shadow-decision-v1",
+  "mode": "shadow",
+  "executionAuthorized": false,
+  "strategySha256": "3df12a71ee3a71496c326c75fd8e69f56e34055fabb00fb4179791368fc10cc6",
+  "engineCodeSha256": "1820973c797e99ea8ac3941a39cbed0501eba28d33dee0779e7715206e8fcdf6",
+  "inputSha256": "055ea18c67e43c8c74714034af9d44210c79c59ad1bbaf10b08d25f153747a4c",
+  "snapshotAsOf": "2026-09-08T20:00:01+00:00",
+  "warmup": null,
+  "accountRef": "test-account",
+  "accountSourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "accountEventTime": "2026-09-08T20:00:01+00:00",
+  "decisions": [
+    {
+      "signalId": "23f1df34c83d9c501e50b951813327ac41b04a9a1d5213eda0404bf65e7619ea",
+      "symbol": "INSTRUMENT:1",
+      "eventTime": "2026-09-08T20:00:00+00:00",
+      "expiresAt": "2026-09-08T20:01:01+00:00",
+      "currentQuantity": "0",
+      "targetQuantity": "2.25",
+      "side": "BUY",
+      "quantity": "2.25"
+    }
+  ],
+  "decisionSha256": "26bf8faccc514202ec0f8ca003243c165f069b45d51242c3758660295bca29a9"
+}

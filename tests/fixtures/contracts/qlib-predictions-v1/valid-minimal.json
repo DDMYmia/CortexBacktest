@@ -1,0 +1,56 @@
+{
+  "contractVersion": "qlib-predictions-v1",
+  "mode": "historical_reconstruction",
+  "inputSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "inputAsOf": "2021-01-01T00:00:00Z",
+  "settings": {
+    "splits": {
+      "train": [
+        "2020-03-01",
+        "2020-05-01"
+      ],
+      "valid": [
+        "2020-05-04",
+        "2020-06-01"
+      ],
+      "test": [
+        "2020-06-04",
+        "2020-07-01"
+      ]
+    },
+    "label": "Ref($close,-2)/Ref($close,-1)-1",
+    "labelHorizon": 2,
+    "features": "Alpha158-OHLCV",
+    "excludedFeatures": [
+      "VWAP0"
+    ],
+    "rounds": 40,
+    "earlyStopping": 10,
+    "seed": 7,
+    "trials": 1,
+    "featureProcessors": [
+      "ProcessInf",
+      "ZScoreNorm-training-only",
+      "Fillna"
+    ]
+  },
+  "instruments": [
+    "1",
+    "2"
+  ],
+  "recordCount": 56,
+  "generatedAt": "2021-01-02T00:00:00Z",
+  "producerSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "versions": {
+    "pyqlib": "TEST",
+    "lightgbm": "TEST"
+  },
+  "featureCount": 157,
+  "files": {
+    "model.txt": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "predictions.json": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  },
+  "researchOnly": true,
+  "qualificationIssued": false,
+  "executionAuthorized": false
+}

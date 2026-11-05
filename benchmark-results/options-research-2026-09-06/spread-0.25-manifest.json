@@ -1,0 +1,68 @@
+{
+  "code_digest": "0a8dd56d2b8067c4b29d359a8af844d6d93c4503cb91adc8913597bfb4091b19",
+  "config": {
+    "credit_rate": 0.02,
+    "currency": "USD",
+    "data_id": "synthetic-bsm-v1",
+    "debit_rate": 0.06,
+    "exercise_threshold": 0.01,
+    "initial_cash": 100000,
+    "maintenance_fraction": 1.0,
+    "option_fee": 0.65,
+    "participation": 1.0,
+    "quote_policy": {
+      "allow_zero_bid": false,
+      "max_age": "4 days, 0:00:00",
+      "max_relative_spread": 1.0,
+      "min_open_interest": 0
+    },
+    "require_sizes": true,
+    "settlement_model": {
+      "delay_days": 0,
+      "sessions": null,
+      "timezone": null
+    },
+    "spread_fraction": 0.25,
+    "stock_borrow_rate": 0.01,
+    "stock_fee_bps": 1,
+    "strategy_id": "short-straddle-daily-held-delta-v1"
+  },
+  "contracts": [
+    {
+      "currency": "USD",
+      "exercise_style": "european",
+      "expiry": "2026-02-04 21:00:00+00:00",
+      "last_trade_at": null,
+      "multiplier": 100,
+      "right": "call",
+      "settlement": "cash",
+      "strike": 100,
+      "symbol": "CALL",
+      "underlying": "ETF"
+    },
+    {
+      "currency": "USD",
+      "exercise_style": "european",
+      "expiry": "2026-02-04 21:00:00+00:00",
+      "last_trade_at": null,
+      "multiplier": 100,
+      "right": "put",
+      "settlement": "cash",
+      "strike": 100,
+      "symbol": "PUT",
+      "underlying": "ETF"
+    }
+  ],
+  "data_digest": "9a1a1b2ee491546559549d980675a593f36311d3e0ff81a5cb255e72698ecd8b",
+  "data_id": "synthetic-bsm-v1",
+  "engine": "quote_options_v1",
+  "execution": "next-frame IOC; sequential legs; no synthetic liquidity",
+  "initial_cash": 100000,
+  "margin_model": "ResearchOptionMargin",
+  "margin_parameters": {
+    "alpha": 0.2,
+    "beta": 0.1,
+    "stock_fraction": 0.5
+  },
+  "strategy_id": "short-straddle-daily-held-delta-v1"
+}

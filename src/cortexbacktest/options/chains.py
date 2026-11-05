@@ -416,8 +416,11 @@ def iter_normalized_chunks(
     if dates_per_chunk < 1:
         raise ValueError("dates_per_chunk must be positive")
     spec = _resolve_source(source)
-    lazy = (source_file if isinstance(source_file, pl.LazyFrame)
-            else scan_chain_file(source_file))
+    lazy: pl.LazyFrame
+    if isinstance(source_file, pl.LazyFrame):
+        lazy = source_file
+    else:
+        lazy = scan_chain_file(source_file)
     resolved = {**spec.resolve(lazy.collect_schema().names()), **dict(overrides or {})}
     if "quote_date" not in resolved:
         raise ValueError(f"source {spec.name!r} has no quote-date column in this file")

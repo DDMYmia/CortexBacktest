@@ -84,4 +84,7 @@ def _instantiate_strategy(
     for name, value in (("broker", broker), ("dataset", dataset)):
         if name in signature.parameters and name not in call_kwargs:
             call_kwargs[name] = value
-    return target(**call_kwargs)
+    strategy = target(**call_kwargs)
+    if not isinstance(strategy, Strategy):
+        raise TypeError(f"strategy factory must return a Strategy, got {type(strategy).__qualname__}")
+    return strategy

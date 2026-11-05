@@ -203,10 +203,15 @@ def _corporate_actions_record(schedule) -> dict[str, Any] | None:
     return {"count": len(schedule), "sha256": hasher.hexdigest()}
 
 
+def _is_dataclass_instance(value: Any) -> bool:
+    # is_dataclass() is also true for the class itself, and asdict() raises on a class.
+    return is_dataclass(value) and not isinstance(value, type)
+
+
 def _model_record(value: Any) -> dict[str, Any] | None:
     if value is None:
         return None
-    values = asdict(value) if is_dataclass(value) else getattr(value, "__dict__", {})
+    values = asdict(value) if _is_dataclass_instance(value) else getattr(value, "__dict__", {})
     return {"type": _strategy_name(value), "settings": _json_value(values)}
 
 
@@ -216,7 +221,7 @@ def _strategy_name(value: Any) -> str:
 
 
 def _json_value(value: Any) -> Any:
-    if is_dataclass(value):
+    if _is_dataclass_instance(value):
         return _json_value(asdict(value))
     if isinstance(value, Mapping):
         return {str(key): _json_value(item) for key, item in value.items()}

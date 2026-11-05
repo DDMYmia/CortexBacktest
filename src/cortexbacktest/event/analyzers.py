@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, cast
 
 from ..contracts import Bar, Fill, Order, OrderRecord, OrderStatus
 
@@ -168,7 +168,8 @@ class DrawdownAnalyzer(EventAnalyzer):
         self.max_drawdown_pct = 0.0
 
     def after_bar(self, bar: Bar, *, broker: BrokerSimulator, strategy: StrategyHooks) -> None:
-        equity = float(broker.equity_snapshot(bar.timestamp)["equity"])
+        # equity_snapshot is one dict holding the timestamp as well; "equity" is always a float.
+        equity = float(cast(float, broker.equity_snapshot(bar.timestamp)["equity"]))
         if self.peak is None or equity > self.peak:
             self.peak = equity
         drawdown = equity - self.peak

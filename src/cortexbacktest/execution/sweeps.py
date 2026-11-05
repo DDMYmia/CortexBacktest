@@ -14,6 +14,7 @@ from ..event.parallel import ParallelBackend, ProcessPlan, run_cases, validate_b
 from ..scheduling import SweepScheduling
 from ..event import BacktestEngine, BrokerSimulator, RebalanceConfig, TargetWeightStrategy
 from ..event.costs import CommissionModel, SlippageModel
+from ..event.risk import RiskRule
 from ..research.sweeps import FactorSweepResult, best_case_in
 
 if TYPE_CHECKING:
@@ -92,7 +93,7 @@ def run_execution_sweep(
     fill_price: FillPrice = FillPrice.OPEN,
     allow_short: bool = True,
     max_volume_share: float = 1.0,
-    risk_rules: list[object] | None = None,
+    risk_rules: list[RiskRule] | None = None,
     rebalance_config: RebalanceConfig | None = None,
     trade_on_close: bool = False,
     max_workers: int | None = 1,
@@ -148,7 +149,7 @@ def _run_execution_sweep_case(
     fill_price: FillPrice,
     allow_short: bool,
     max_volume_share: float,
-    risk_rules: list[object] | None,
+    risk_rules: list[RiskRule] | None,
     rebalance_config: RebalanceConfig,
     trade_on_close: bool,
 ):

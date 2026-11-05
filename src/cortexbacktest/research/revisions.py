@@ -98,12 +98,12 @@ class RevisionPanel:
 
     def prices(self, *, cutoff: datetime | None = None, grid: pl.DataFrame | None = None) -> pl.DataFrame:
         decision_cutoff = cutoff if cutoff is not None else self.decisions.item(-1, "decision_time")
-        grid = grid if grid is not None else self.decisions.select("date")
+        dates = grid if grid is not None else self.decisions.select("date")
         visible = self.visible_revisions(decision_cutoff).filter(
-            pl.col("date").is_in(grid["date"].implode()) & (pl.col("date") <= decision_cutoff)
+            pl.col("date").is_in(dates["date"].implode()) & (pl.col("date") <= decision_cutoff)
         ).sort("recorded_at").unique(subset=["date", "symbol"], keep="last")
         symbols = sorted(self.revisions["symbol"].unique())
-        panel = grid.join(visible.pivot(on="symbol", index="date", values="price"), on="date", how="left")
+        panel = dates.join(visible.pivot(on="symbol", index="date", values="price"), on="date", how="left")
         return panel.with_columns(pl.lit(None, dtype=pl.Float64).alias(s) for s in symbols if s not in panel.columns).select(
             "date", *symbols).sort("date")
 

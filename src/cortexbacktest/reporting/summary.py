@@ -226,8 +226,9 @@ def _json_value(value):
         return value.isoformat()
     if isinstance(value, float) and (math.isnan(value) or math.isinf(value)):
         return None
-    if hasattr(value, "item"):
-        return _json_value(value.item())
+    item = getattr(value, "item", None)  # numpy scalars expose .item(); plain floats do not
+    if callable(item):
+        return _json_value(item())
     return value
 
 

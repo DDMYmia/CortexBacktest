@@ -31,6 +31,7 @@ from .event.feed import ColumnarBarFeed
 from .event.financing import CashInterestModel, SettlementModel, ShortBorrowFeeModel
 from .event.matching import MatchingModel
 from .event.risk import RiskRule
+from .event.dispatch import StrategyHooks
 from .event.strategy import Strategy
 
 API_VERSION = "v1"
@@ -205,12 +206,15 @@ def run_backtest(
     """
     settings = config or BacktestConfig()
     run_metadata = dict(settings.metadata)
+    hooks: StrategyHooks
     if isinstance(strategy, StrategySpec):
         run_metadata["strategy_spec"] = {
             "identity": strategy.identity,
             "parameters": dict(strategy.parameters),
         }
-        strategy = strategy.create()
+        hooks = strategy.create()
+    else:
+        hooks = strategy
     if metadata is not None:
         run_metadata.update(metadata)
     engine = BacktestEngine(
@@ -223,4 +227,4 @@ def run_backtest(
         data_validation=settings.data_validation,
         run_metadata={"api_version": API_VERSION, **run_metadata},
     )
-    return engine.run(bars, strategy, assume_sorted=assume_sorted)
+    return engine.run(bars, hooks, assume_sorted=assume_sorted)

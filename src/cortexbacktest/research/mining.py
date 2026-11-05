@@ -117,12 +117,12 @@ def _availability(prices: pl.DataFrame, availability: pl.DataFrame | None) -> pl
         return None
     if set(availability.columns) != set(prices.columns):
         raise ValueError("Availability must have the same dates and assets as prices")
-    availability = availability.select(prices.columns).sort("date")
-    if not availability["date"].equals(prices["date"]):
+    aligned = availability.select(prices.columns).sort("date")
+    if not aligned["date"].equals(prices["date"]):
         raise ValueError("Availability must have the same dates and assets as prices")
-    if any(not isinstance(availability.schema[name], pl.Datetime) for name in prices.columns if name != "date"):
+    if any(not isinstance(aligned.schema[name], pl.Datetime) for name in prices.columns if name != "date"):
         raise ValueError("Availability values must be Datetime timestamps")
-    return availability
+    return aligned
 
 
 def _known_prices(prices: pl.DataFrame, availability: pl.DataFrame | None) -> pl.DataFrame:
@@ -363,8 +363,12 @@ def auto_mine_factors(
                                     "optimizer": dict(optimizer.configuration)})
 
 
-def _frozen_inputs(result: MiningResult, prices: pl.DataFrame | RevisionPanel,
-                   availability: pl.DataFrame | None, inner_execution: RevisionPanel | None):
+def _frozen_inputs(
+    result: MiningResult,
+    prices: pl.DataFrame | RevisionPanel,
+    availability: pl.DataFrame | None,
+    inner_execution: RevisionPanel | None,
+) -> tuple[RevisionPanel | None, pl.DataFrame, pl.DataFrame | None, RevisionPanel | None]:
     revisions = prices if isinstance(prices, RevisionPanel) else None
     if revisions is not None and availability is not None:
         raise ValueError("RevisionPanel already owns availability clocks")
@@ -373,16 +377,17 @@ def _frozen_inputs(result: MiningResult, prices: pl.DataFrame | RevisionPanel,
         raise ValueError("Inner execution evidence changed since selection")
     if (inner_revisions.fingerprint() if inner_revisions is not None else None) != result.inner_revision_sha256:
         raise ValueError("Inner revision evidence or decision clocks changed since selection")
-    prices = _panel(revisions.prices() if revisions is not None else cast(pl.DataFrame, prices))
-    availability = _availability(prices, availability)
-    inner_availability = availability.filter(pl.col("date") <= result.inner_end) if availability is not None else None
+    panel = _panel(revisions.prices() if revisions is not None else cast(pl.DataFrame, prices))
+    checked_availability = _availability(panel, availability)
+    inner_availability = (checked_availability.filter(pl.col("date") <= result.inner_end)
+                          if checked_availability is not None else None)
     digest = _digest(inner_availability) if inner_availability is not None else None
     if digest != result.inner_availability_sha256:
         raise ValueError("Inner availability changed since selection")
-    inner = inner_revisions.prices() if inner_revisions is not None else prices.filter(pl.col("date") <= result.inner_end)
+    inner = inner_revisions.prices() if inner_revisions is not None else panel.filter(pl.col("date") <= result.inner_end)
     if _digest(inner) != result.inner_sha256:
         raise ValueError("Inner data changed since selection")
-    return revisions, prices, availability, inner_revisions
+    return revisions, panel, checked_availability, inner_revisions
 
 
 def frozen_factor_values(result: MiningResult, prices: pl.DataFrame | RevisionPanel, *,
@@ -431,7 +436,7 @@ def evaluate_holdout(result: MiningResult, prices: pl.DataFrame | RevisionPanel,
     if revisions is not None and execution is None:
         _require_close_decisions(revisions)
     inner_execution = execution.head(revisions.through(result.inner_end).decisions.height) if execution is not None and revisions is not None else None
-    revisions, prices, availability, inner_revisions = _frozen_inputs(result, prices, availability, inner_execution)
+    revisions, frozen_prices, availability, inner_revisions = _frozen_inputs(result, prices, availability, inner_execution)
     if execution is not None:
         assert revisions is not None and inner_revisions is not None
         # Training may finish after the following session has already opened.
@@ -444,12 +449,12 @@ def evaluate_holdout(result: MiningResult, prices: pl.DataFrame | RevisionPanel,
                     decision_times=revisions.decisions, horizons=(result.horizon,), transaction_cost_bps=result.cost_bps,
                     bottom_quantile=_bottom_quantile(result.settings.get("portfolio_mode", "long_short")))
                 for spec in result.selected}
-    outer = prices.filter(pl.col("date") > result.inner_end)
+    outer = frozen_prices.filter(pl.col("date") > result.inner_end)
     if outer.height <= result.horizon:
         raise ValueError("Insufficient later holdout data")
     return {spec.name: run_factor_research(
         _known_prices(outer, availability.filter(pl.col("date") > result.inner_end) if availability is not None else None),
-        (revisions.factor(spec) if revisions is not None else spec.build(prices, availability)).filter(pl.col("date") > result.inner_end),
+        (revisions.factor(spec) if revisions is not None else spec.build(frozen_prices, availability)).filter(pl.col("date") > result.inner_end),
         horizons=(result.horizon,), transaction_cost_bps=result.cost_bps,
         bottom_quantile=_bottom_quantile(result.settings.get("portfolio_mode", "long_short")),
     ) for spec in result.selected}

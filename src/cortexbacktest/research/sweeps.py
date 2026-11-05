@@ -287,28 +287,28 @@ def _equity_returns(report: ResearchReport) -> pl.Series:
     return frame.select(pl.col("equity").pct_change().alias("return")).drop_nulls()["return"]
 
 
-def _series_mean(values) -> float:
+def _series_mean(values: pl.Series) -> float:
     clean = _clean_series(values)
     if len(clean) == 0:
         return float("nan")
-    return float(clean.mean())
+    return float(cast(float, clean.mean()))
 
 
-def _series_min(values) -> float:
+def _series_min(values: pl.Series) -> float:
     clean = _clean_series(values)
     if len(clean) == 0:
         return float("nan")
-    return float(clean.min())
+    return float(cast(float, clean.min()))
 
 
-def _positive_ratio(values) -> float:
+def _positive_ratio(values: pl.Series) -> float:
     clean = _clean_series(values)
     if len(clean) == 0:
         return float("nan")
-    return float((clean > 0).mean())
+    return float(cast(float, (clean > 0).mean()))
 
 
-def _clean_series(values):
+def _clean_series(values: pl.Series) -> pl.Series:
     if isinstance(values, pl.Series):
         return values.filter(values.is_finite())
     return values.dropna()

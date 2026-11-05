@@ -1,6 +1,6 @@
 """Application composition of simulation and reporting."""
 
-from typing import cast
+from typing import Iterable, cast
 from .contracts import Bar
 from .event.feed import ColumnarBarFeed
 from .event.dispatch import StrategyHooks
@@ -13,7 +13,7 @@ class BacktestEngine(EventLoop):
 
     def run(
         self,
-        bars: list[Bar] | ColumnarBarFeed,
+        bars: Iterable[Bar] | ColumnarBarFeed,
         strategy: StrategyHooks,
         *,
         assume_sorted: bool = False,

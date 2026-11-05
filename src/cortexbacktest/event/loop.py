@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from array import array
 from datetime import datetime, time, timedelta
-from typing import Any, Literal, Mapping, cast
+from typing import Any, Iterable, Literal, Mapping, cast
 
 import numpy as np
 import polars as pl
@@ -172,7 +172,7 @@ class BacktestEngine:
 
     def run(
         self,
-        bars: list[Bar] | ColumnarBarFeed,
+        bars: Iterable[Bar] | ColumnarBarFeed,
         strategy: StrategyHooks,
         *,
         assume_sorted: bool = False,

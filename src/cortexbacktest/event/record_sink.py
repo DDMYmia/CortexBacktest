@@ -191,9 +191,11 @@ class _RowWriter:
                 {column: [_scalar_value(row.get(column)) for row in batch] for column in self.columns},
                 schema=self._schema,
             ).to_arrow()
-            if self._parquet_writer is None:
-                self._parquet_writer = pq.ParquetWriter(self.path, table.schema)
-            self._parquet_writer.write_table(table)
+            writer = self._parquet_writer
+            if writer is None:
+                writer = pq.ParquetWriter(self.path, table.schema)
+                self._parquet_writer = writer
+            writer.write_table(table)
 
     def close(self) -> None:
         self.flush()

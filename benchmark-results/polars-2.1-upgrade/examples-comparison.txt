@@ -1,0 +1,7 @@
+125 items, 120 identical, 5 differ
+  DIFF factor_workflow_demo.stderr_lines 25 | 23
+  DIFF trustworthy_workflows_demo:trust/adaptive.sqlite 1f7a093611c9 | 5bb328d7180b
+  DIFF trustworthy_workflows_demo:trust/robustness/cost_sensitivity.parquet 3af7a101fd36 | 6a32e5c8a4b1
+  DIFF trustworthy_workflows_demo:trust/robustness/out_of_sample.parquet 55d77d77b8ff | 5a4dc063b029
+  DIFF trustworthy_workflows_demo:trust/robustness/selections.parquet 8622779fc7e0 | cfef7aa56074
+

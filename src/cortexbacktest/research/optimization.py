@@ -193,7 +193,7 @@ def cap_weights(
 
 
 def target_volatility_scale(
-    returns: pl.DataFrame,
+    returns: pl.DataFrame | pl.Series,
     *,
     target_volatility: float,
     realized_volatility: float | None = None,
@@ -266,7 +266,7 @@ def apply_volatility_target(
     )
 
 
-def _return_series(returns: pl.DataFrame) -> pl.Series:
+def _return_series(returns: pl.DataFrame | pl.Series) -> pl.Series:
     if isinstance(returns, pl.Series):
         return returns
     if isinstance(returns, pl.DataFrame):

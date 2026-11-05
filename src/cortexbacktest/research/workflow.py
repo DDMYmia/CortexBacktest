@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import cast
 
 import polars as pl
 
@@ -300,7 +301,7 @@ def _mean_polars_column(frame: pl.DataFrame, column: str) -> float:
     if frame.is_empty() or column not in frame.columns:
         return float("nan")
     value = frame[column].mean()
-    return float(value) if value is not None else float("nan")
+    return float(cast(float, value)) if value is not None else float("nan")
 
 
 def _empty_polars(columns: list[str]) -> pl.DataFrame:

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+from typing import cast
 
 import polars as pl
 
@@ -33,8 +34,10 @@ def ic_summary(values, *, value_col: str = "rank_ic") -> pl.DataFrame:
     std = clean[value_col].std(ddof=1) if count > 1 else None
     information_ratio = None
     t_stat = None
-    if std is not None and std != 0 and not math.isnan(std):
-        information_ratio = float(mean / std)
+    if std is not None and std != 0 and not math.isnan(cast(float, std)):
+        # The value column is numeric by contract; the casts only narrow the
+        # Polars stub's union for the type checker.
+        information_ratio = float(cast(float, mean) / cast(float, std))
         t_stat = float(information_ratio * math.sqrt(count))
     positive_ratio = clean.select((pl.col(value_col) > 0).mean()).item()
     return pl.DataFrame(

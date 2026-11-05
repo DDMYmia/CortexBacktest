@@ -1,0 +1,29 @@
+FAIL     factor.latent_quality.h1.ic_by_date: 53 of 53 differing cells beyond tolerance, max_abs=2.776e-17, max_rel=4.489e-15
+FAIL     factor.latent_quality.h1.rank_ic_by_date: 144 of 144 differing cells beyond tolerance, max_abs=2.776e-17, max_rel=4.285e-14
+FAIL     factor.latent_quality.h20.ic_by_date: 42 of 42 differing cells beyond tolerance, max_abs=5.551e-17, max_rel=2.844e-15
+FAIL     factor.latent_quality.h20.rank_ic_by_date: 105 of 105 differing cells beyond tolerance, max_abs=2.776e-17, max_rel=2.900e-14
+FAIL     factor.latent_quality.h5.ic_by_date: 58 of 58 differing cells beyond tolerance, max_abs=2.776e-17, max_rel=4.343e-15
+FAIL     factor.latent_quality.h5.rank_ic_by_date: 117 of 117 differing cells beyond tolerance, max_abs=4.163e-17, max_rel=5.127e-14
+FAIL     factor.low_vol_60.h1.ic_by_date: 115 of 115 differing cells beyond tolerance, max_abs=5.551e-17, max_rel=7.121e-14
+FAIL     factor.low_vol_60.h1.rank_ic_by_date: 116 of 116 differing cells beyond tolerance, max_abs=2.082e-17, max_rel=5.286e-14
+FAIL     factor.low_vol_60.h20.ic_by_date: 122 of 122 differing cells beyond tolerance, max_abs=4.163e-17, max_rel=7.991e-15
+FAIL     factor.low_vol_60.h20.rank_ic_by_date: 111 of 111 differing cells beyond tolerance, max_abs=2.776e-17, max_rel=6.575e-14
+FAIL     factor.low_vol_60.h5.ic_by_date: 115 of 115 differing cells beyond tolerance, max_abs=3.816e-17, max_rel=3.083e-14
+FAIL     factor.low_vol_60.h5.rank_ic_by_date: 109 of 109 differing cells beyond tolerance, max_abs=2.776e-17, max_rel=4.698e-14
+FAIL     factor.low_vol_60.summary: 4 of 4 differing cells beyond tolerance, max_abs=2.602e-18, max_rel=1.139e-15
+FAIL     factor.momentum_252.h1.ic_by_date: 30 of 30 differing cells beyond tolerance, max_abs=5.551e-17, max_rel=9.818e-16
+FAIL     factor.momentum_252.h1.rank_ic_by_date: 77 of 77 differing cells beyond tolerance, max_abs=2.776e-17, max_rel=2.692e-14
+FAIL     factor.momentum_252.h20.ic_by_date: 45 of 45 differing cells beyond tolerance, max_abs=2.776e-17, max_rel=2.953e-14
+FAIL     factor.momentum_252.h20.rank_ic_by_date: 69 of 69 differing cells beyond tolerance, max_abs=2.082e-17, max_rel=5.246e-15
+FAIL     factor.momentum_252.h5.ic_by_date: 42 of 42 differing cells beyond tolerance, max_abs=2.776e-17, max_rel=3.801e-15
+FAIL     factor.momentum_252.h5.rank_ic_by_date: 70 of 70 differing cells beyond tolerance, max_abs=2.429e-17, max_rel=9.168e-15
+FAIL     factor.momentum_252.summary: 4 of 4 differing cells beyond tolerance, max_abs=5.421e-19, max_rel=1.962e-15
+FAIL     factor.reversal_5.h1.ic_by_date: 50 of 50 differing cells beyond tolerance, max_abs=2.776e-17, max_rel=3.547e-15
+FAIL     factor.reversal_5.h1.rank_ic_by_date: 143 of 143 differing cells beyond tolerance, max_abs=2.776e-17, max_rel=7.867e-14
+FAIL     factor.reversal_5.h20.ic_by_date: 63 of 63 differing cells beyond tolerance, max_abs=5.551e-17, max_rel=7.287e-15
+FAIL     factor.reversal_5.h20.rank_ic_by_date: 122 of 122 differing cells beyond tolerance, max_abs=2.776e-17, max_rel=5.277e-14
+FAIL     factor.reversal_5.h5.ic_by_date: 65 of 65 differing cells beyond tolerance, max_abs=2.776e-17, max_rel=6.139e-15
+FAIL     factor.reversal_5.h5.rank_ic_by_date: 122 of 122 differing cells beyond tolerance, max_abs=2.776e-17, max_rel=1.418e-14
+FAIL     factor.reversal_5.summary: 2 of 2 differing cells beyond tolerance, max_abs=5.421e-19, max_rel=2.080e-15
+
+43 bit-identical, 0 within tolerance, 27 failing, of 70 tables (abs_tol=0.0, rel_tol=0.0)

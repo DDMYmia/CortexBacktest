@@ -1,0 +1,35 @@
+{
+  "cells_per_second_median": 290159.7097379464,
+  "dates": 2520,
+  "factors": [
+    "momentum_252",
+    "reversal_5",
+    "low_vol_60",
+    "latent_quality"
+  ],
+  "last_run_metrics": {
+    "latent_quality.mean_rank_ic_5d": 0.04481791267873628,
+    "low_vol_60.mean_rank_ic_5d": 0.0013921103690123038,
+    "momentum_252.mean_rank_ic_5d": 0.022106189506618988,
+    "reversal_5.mean_rank_ic_5d": -0.00561564378605739,
+    "seconds.latent_quality": 13.68749698199997,
+    "seconds.low_vol_60": 13.688239312000007,
+    "seconds.momentum_252": 12.034747366000033,
+    "seconds.reversal_5": 12.981043286999977,
+    "total_seconds": 52.39152694699999
+  },
+  "machine": "x86_64",
+  "panel_build_seconds": 17.528826856999956,
+  "peak_rss_mb": 1945.63671875,
+  "platform": "Linux-6.18.44-fc-v236-x86_64-with-glibc2.39",
+  "polars": "2.1.0",
+  "python": "3.13.18",
+  "repeat": 3,
+  "symbols": 1500,
+  "total_seconds_all": [
+    51.52081931399999,
+    52.10923326900007,
+    52.39152694699999
+  ],
+  "total_seconds_median": 52.10923326900007
+}

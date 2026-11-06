@@ -6,6 +6,20 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Indicators
+
+- Fourteen built-in indicators: `macd_histogram`, `percentage_price_oscillator`,
+  `bollinger_percent_b`, `average_directional_index`, `directional_indicators`,
+  `aroon_oscillator`, `stochastic_d`, `williams_r`, `commodity_channel_index`,
+  `normalized_average_true_range`, `on_balance_volume`, `money_flow_index`,
+  `chaikin_money_flow` and `vwap_ratio`. Tests compare them with stored TA-Lib output.
+- `rsi` and `average_true_range` take `smoothing="wilder"`. The default stays the
+  simple rolling mean, so existing results do not change.
+- `IndicatorRegistry.run_panel` runs an OHLCV indicator for each symbol of a long
+  table and returns a factor matrix.
+- `stochastic_oscillator` gives null, not NaN, on a flat window.
+- `factor-sweep --case` accepts every built-in price indicator, not only five.
+
 ### Polars 2.1
 
 - The dependency is now `polars>=2.1,<3` (was `>=1.0,<2`). The `polars-pinned`

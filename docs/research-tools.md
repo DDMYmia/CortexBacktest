@@ -25,13 +25,36 @@ with checked inputs:
   the observations including the first usable output: momentum, return
   volatility and RSI need `window + 1` prices; EMA needs `span`; the MACD line
   needs `slow`; rolling price statistics and OHLC kernels need `window`.
+  `describe(name, **params)["warmup_bars"]` gives the number for any indicator.
 - Price inputs are wide date × symbol matrices; OHLC inputs are single-asset
-  tables (`high_col` / `low_col` / `close_col` aliases are honoured). Duplicate
-  or null dates are rejected. A missing or non-finite value invalidates every
-  rolling window that contains it.
+  tables (`high_col` / `low_col` / `close_col` / `volume_col` aliases are
+  honoured). Duplicate or null dates are rejected. A missing or non-finite value
+  invalidates every rolling window that contains it.
+- `run_panel(name, long_bars, column=None)` runs a table indicator for each
+  symbol of a long table and returns a date × symbol factor matrix. A symbol
+  without enough complete history gets no column.
 - Custom `register` calls may declare required columns, warmup and market or
   frequency scope. A restricted scope needs an explicit `input_context`; it is
   never inferred from symbols.
+
+| Kind | Input | Indicators |
+| --- | --- | --- |
+| Trend | prices | `momentum`, `sma_ratio`, `ema_ratio`, `macd`, `macd_histogram`, `percentage_price_oscillator` |
+| Trend | table | `average_directional_index`, `directional_indicators`, `aroon_oscillator` |
+| Oscillator | prices | `rsi`, `rolling_zscore`, `bollinger_percent_b` |
+| Oscillator | table | `stochastic_oscillator`, `stochastic_d`, `williams_r`, `commodity_channel_index` |
+| Volatility | prices | `rolling_volatility`, `bollinger_band_width` |
+| Volatility | table | `average_true_range`, `normalized_average_true_range` |
+| Volume | table | `on_balance_volume`, `money_flow_index`, `chaikin_money_flow`, `vwap_ratio` |
+
+`rsi`, `average_true_range` and `normalized_average_true_range` default to a
+simple rolling mean. Pass `smoothing="wilder"` for Wilder's recursive average, the
+value most charting tools show. Tests compare the indicators with stored TA-Lib
+output. RSI, %R, CCI, OBV, MFI, Aroon, %D and %B match on every row. ATR, DI, ADX,
+MACD and PPO start from a different seed, so they match only after the recursion
+converges: compare them with another library after a long warmup.
+`bollinger_percent_b` uses the sample standard deviation, as
+`bollinger_band_width` does; TA-Lib uses the population value.
 
 ### External providers
 

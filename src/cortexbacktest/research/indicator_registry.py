@@ -17,17 +17,32 @@ from .indicator_providers import (
     TulipIndicatorProvider,
     assess_external,
 )
+from .frames import factor_matrix
 from .indicators import (
+    aroon_oscillator,
+    average_directional_index,
     average_true_range,
     bollinger_band_width,
+    bollinger_percent_b,
+    chaikin_money_flow,
+    commodity_channel_index,
+    directional_indicators,
     ema_ratio,
     macd,
+    macd_histogram,
     momentum,
+    money_flow_index,
+    normalized_average_true_range,
+    on_balance_volume,
+    percentage_price_oscillator,
     rolling_volatility,
     rolling_zscore,
     rsi,
     sma_ratio,
+    stochastic_d,
     stochastic_oscillator,
+    vwap_ratio,
+    williams_r,
 )
 
 IndicatorFunc = Callable[..., Any]
@@ -43,7 +58,7 @@ class IndicatorSpec:
     extra_columns: tuple[str, ...] = ()
     input_kind: str = "table"
     min_warmup_bars: int = 0
-    warmup_parameter: str | None = None
+    warmup_parameter: str | tuple[str, ...] | None = None
     warmup_offset: int = 0
     markets: tuple[str, ...] = ()
     frequencies: tuple[str, ...] = ()
@@ -52,19 +67,22 @@ class IndicatorSpec:
     def __post_init__(self) -> None:
         if self.input_kind not in {"prices", "table"}:
             raise ValueError("input_kind must be prices or table")
-        for value in (self.min_warmup_bars, self.warmup_offset):
-            if type(value) is not int or value < 0:
-                raise ValueError("warmup bars and offset must be nonnegative integers")
+        if type(self.min_warmup_bars) is not int or self.min_warmup_bars < 0:
+            raise ValueError("min_warmup_bars must be a nonnegative integer")
+        if type(self.warmup_offset) is not int:
+            raise ValueError("warmup_offset must be an integer")
 
     def warmup_bars(self, params: dict[str, Any]) -> int:
         if self.warmup_parameter is None:
             return self.min_warmup_bars
         bound = signature(self.func).bind_partial(None, **params)
         bound.apply_defaults()
-        value = bound.arguments[self.warmup_parameter]
-        if type(value) is not int or value < 1:
-            raise ValueError(f"{self.warmup_parameter} must be a positive integer")
-        return max(self.min_warmup_bars, value + self.warmup_offset)
+        names = (self.warmup_parameter,) if isinstance(self.warmup_parameter, str) else self.warmup_parameter
+        for name in names:
+            value = bound.arguments[name]
+            if type(value) is not int or value < 1:
+                raise ValueError(f"{name} must be a positive integer")
+        return max(self.min_warmup_bars, sum(bound.arguments[name] for name in names) + self.warmup_offset)
 
 
 class IndicatorRegistry:
@@ -101,7 +119,7 @@ class IndicatorRegistry:
         extra_columns: tuple[str, ...] = (),
         input_kind: str = "table",
         min_warmup_bars: int = 0,
-        warmup_parameter: str | None = None,
+        warmup_parameter: str | tuple[str, ...] | None = None,
         warmup_offset: int = 0,
         markets: tuple[str, ...] = (),
         frequencies: tuple[str, ...] = (),
@@ -161,6 +179,35 @@ class IndicatorRegistry:
                 return self.run(f"{prov_name}:{key}", data, input_context=input_context, **kwargs)
 
         raise KeyError(f"unknown indicator: {name}")
+
+    def run_panel(
+        self, name: str, bars: pl.DataFrame, *, column: str | None = None,
+        symbol_col: str = "symbol", **kwargs: Any,
+    ) -> pl.DataFrame:
+        """Run a single-asset table indicator per symbol, as a date x symbol matrix.
+
+        Long bars in, a factor matrix out, so OHLCV indicators feed the same
+        research as price indicators. A symbol without enough complete history
+        gets no rows. `column` picks the output of a multi-column indicator.
+        """
+        if self.spec(name).input_kind != "table":
+            raise ValueError(f"indicator {name} takes a price matrix, not long bars")
+        if symbol_col not in bars.columns:
+            raise ValueError(f"missing_column:{symbol_col}")
+        rows = []
+        for (symbol,), group in bars.group_by(symbol_col, maintain_order=True):
+            table = group.drop(symbol_col)
+            if not self.assess(name, table, **kwargs)["ready"]:
+                continue
+            result = self.run(name, table, **kwargs)
+            outputs = [c for c in result.columns if c != "date"]
+            if column is None and len(outputs) > 1:
+                raise ValueError(f"indicator {name} has several outputs; choose column from {outputs}")
+            rows.append(result.select("date", pl.lit(symbol).alias("symbol"),
+                                      pl.col(column or outputs[0]).alias("factor")))
+        if not rows:
+            raise ValueError(f"indicator {name}: no symbol has enough complete history")
+        return factor_matrix(pl.concat(rows))
 
     def spec(self, name: str) -> IndicatorSpec:
         key = _normalize_name(name)
@@ -264,6 +311,20 @@ def default_indicator_registry() -> IndicatorRegistry:
             IndicatorSpec("rolling_zscore", rolling_zscore, "Rolling price z-score.", required_columns=("close",), input_kind="prices", warmup_parameter="window", warmup_offset=0, output_unit="standard_deviations"),
             IndicatorSpec("average_true_range", average_true_range, "Average true range for OHLC bars.", required_columns=("high", "low", "close"), input_kind="table", warmup_parameter="window", warmup_offset=0, output_unit="input_price_unit"),
             IndicatorSpec("stochastic_oscillator", stochastic_oscillator, "Stochastic oscillator %K.", required_columns=("high", "low", "close"), input_kind="table", warmup_parameter="window", warmup_offset=0, output_unit="points_0_to_100"),
+            IndicatorSpec("macd_histogram", macd_histogram, "MACD line minus its signal line.", required_columns=("close",), input_kind="prices", warmup_parameter=("slow", "signal"), warmup_offset=-1, output_unit="input_price_unit"),
+            IndicatorSpec("percentage_price_oscillator", percentage_price_oscillator, "Fast over slow EMA minus one, in percent.", required_columns=("close",), input_kind="prices", warmup_parameter="slow", output_unit="percent"),
+            IndicatorSpec("bollinger_percent_b", bollinger_percent_b, "Position inside the Bollinger bands.", required_columns=("close",), input_kind="prices", warmup_parameter="window", output_unit="band_fraction"),
+            IndicatorSpec("normalized_average_true_range", normalized_average_true_range, "Average true range as a percentage of the close.", required_columns=("high", "low", "close"), input_kind="table", warmup_parameter="window", output_unit="percent"),
+            IndicatorSpec("directional_indicators", directional_indicators, "Wilder +DI and -DI.", required_columns=("high", "low", "close"), input_kind="table", warmup_parameter="window", warmup_offset=1, output_unit="points_0_to_100"),
+            IndicatorSpec("average_directional_index", average_directional_index, "Wilder ADX trend strength.", required_columns=("high", "low", "close"), input_kind="table", warmup_parameter=("window", "window"), output_unit="points_0_to_100"),
+            IndicatorSpec("aroon_oscillator", aroon_oscillator, "Aroon up minus Aroon down.", required_columns=("high", "low"), input_kind="table", warmup_parameter="window", warmup_offset=1, output_unit="points_minus_100_to_100"),
+            IndicatorSpec("stochastic_d", stochastic_d, "Stochastic oscillator %D.", required_columns=("high", "low", "close"), input_kind="table", warmup_parameter=("window", "smooth"), warmup_offset=-1, output_unit="points_0_to_100"),
+            IndicatorSpec("williams_r", williams_r, "Williams %R.", required_columns=("high", "low", "close"), input_kind="table", warmup_parameter="window", output_unit="points_minus_100_to_0"),
+            IndicatorSpec("commodity_channel_index", commodity_channel_index, "Commodity channel index.", required_columns=("high", "low", "close"), input_kind="table", warmup_parameter="window", output_unit="scaled_mean_deviations"),
+            IndicatorSpec("on_balance_volume", on_balance_volume, "Cumulative signed volume.", required_columns=("close", "volume"), input_kind="table", min_warmup_bars=1, output_unit="input_volume_unit"),
+            IndicatorSpec("money_flow_index", money_flow_index, "Volume-weighted RSI of the typical price.", required_columns=("high", "low", "close", "volume"), input_kind="table", warmup_parameter="window", warmup_offset=1, output_unit="points_0_to_100"),
+            IndicatorSpec("chaikin_money_flow", chaikin_money_flow, "Volume-weighted close location in the bar's range.", required_columns=("high", "low", "close", "volume"), input_kind="table", warmup_parameter="window", output_unit="fraction_minus_1_to_1"),
+            IndicatorSpec("vwap_ratio", vwap_ratio, "Close over rolling VWAP minus one.", required_columns=("high", "low", "close", "volume"), input_kind="table", warmup_parameter="window", output_unit="dimensionless_ratio_minus_one"),
         ]
     )
 

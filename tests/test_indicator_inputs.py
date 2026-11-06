@@ -16,9 +16,9 @@ def prices(n=80):
 @pytest.mark.parametrize("name", INDICATORS.names())
 def test_builtin_contract_matches_kernel_and_first_valid_row(name):
     data = prices()
-    if name in {"average_true_range", "stochastic_oscillator"}:
+    if INDICATORS.spec(name).input_kind == "table":
         data = data.rename({"A": "close"}).with_columns(
-            (pl.col("close") + 2).alias("high"), (pl.col("close") - 2).alias("low"))
+            (pl.col("close") + 2).alias("high"), (pl.col("close") - 2).alias("low"), pl.lit(100.).alias("volume"))
     spec = INDICATORS.spec(name)
     actual = INDICATORS.run(name, data)
     expected = spec.func(data)

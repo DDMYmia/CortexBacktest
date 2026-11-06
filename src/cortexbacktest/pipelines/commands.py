@@ -461,7 +461,7 @@ def _indicator_factory(indicator_name: str, params: dict[str, Any]):
         requirements = INDICATORS.describe(indicator_name, **params)
         if not requirements.get("requirements_known", True) or requirements["input_kind"] != "prices":
             raise ValueError("factor CLI requires a reviewed wide-price indicator")
-    elif indicator_name not in {"momentum", "sma_ratio", "ema_ratio", "rolling_volatility", "rsi"}:
+    elif indicator_name not in INDICATORS.names() or INDICATORS.spec(indicator_name).input_kind != "prices":
         raise ValueError(f"Unsupported factor indicator: {indicator_name}")
 
     def build(prices):

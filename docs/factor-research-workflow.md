@@ -61,8 +61,9 @@ ends in 2026-03, use `--end 2026 --end-month 3`); missing later months must not
 count as success. These checks do not prove that the source is complete or
 point-in-time.
 
-`scripts/build_factor_panel.py` aggregates the remote minute store as a stream;
-**minute data never lands locally** (about 100 MB a month). That gives one hard rule:
+The panel is built from the remote minute store by your own extraction job, which
+aggregates it as a stream; this repository does not include that job. **Minute
+data never lands locally** (about 100 MB a month). That gives one hard rule:
 
 > A feature that needs minute data must be computed during extraction. Adding one
 > later means another pass over the whole tape.

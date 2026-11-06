@@ -1,7 +1,17 @@
 """The whole pass: a point-in-time panel, a factor family, and a verdict.
 
-    scripts/build_factor_panel.py data/panel --start 2015 --end 2026
     examples/factor_workflow_demo.py --panel data/panel --output /tmp/factors
+
+The panel is not produced by this repository. Build it from your own data source
+as a Parquet dataset with one row per (ticker, day) and these raw columns:
+
+    ticker, day, open, close, vwap, dollar_volume, realized_variance,
+    max_minute_move, rv_per_minute, close_volume_share
+
+The demo renames `ticker` and `day` to `symbol` and `date`, and derives everything
+else in `features()`. The last three columns need intraday data and must be
+computed while the data is extracted; see docs/factor-research-workflow.md.
+If the panel is missing, the script stops with a message that names the path.
 
 This is the reference shape of a factor study in this repository. It is not a
 strategy and none of these eight factors is a recommendation; what it fixes is
@@ -84,7 +94,7 @@ def forward_returns(panel: pl.LazyFrame, quotes: pl.LazyFrame | None) -> pl.Lazy
 
     Opens come from the panel and, where the panel has no row for a name on
     those sessions (it left that month's universe), from `quotes` fetched with
-    the same definition (`scripts/fill_holding_quotes.py`). A label whose
+    the same definition, supplied with `--holding-quotes`. A label whose
     opens exist in neither stays missing, so the workflow still refuses it.
     """
     sessions = panel.select(pl.col("date").unique().sort()).with_row_index("_s")
@@ -111,12 +121,17 @@ def main() -> int:
     parser.add_argument("--embargo-sessions", type=int, default=0)
     parser.add_argument("--min-dollar-volume", type=float, default=5e6)
     parser.add_argument("--holding-quotes", type=Path,
-                        help="opens for names outside a month's universe (scripts/fill_holding_quotes.py)")
+                        help="opens for names outside a month's universe, as a Parquet file")
     parser.add_argument("--unresolved-labels", choices=("refuse", "exclude"), default="refuse",
                         help="exclude drops rows whose forward opens exist nowhere and counts them in the manifest")
     parser.add_argument("--cost-bps", type=float, default=10.0,
                         help="one-way cost asserted against realised turnover")
     args = parser.parse_args()
+    if not args.panel.exists():
+        raise SystemExit(f"panel not found: {args.panel}. This repository does not build it; "
+                         "see the module docstring for the required columns.")
+    if args.holding_quotes is not None and not args.holding_quotes.exists():
+        raise SystemExit(f"holding quotes not found: {args.holding_quotes}")
 
     panel = (pl.scan_parquet(args.panel)
              .rename({"ticker": "symbol", "day": "date"})
